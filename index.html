@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyurWell - Your Guide to Ayurvedic Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0FFF4;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .quiz-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, #F0FFF4 0%, #E6FFFA 100%);
+            position: relative;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+        }
+        .slider-container {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slider-content {
+            display: inline-block;
+        }
+        .slider-content span {
+            margin: 0 2rem;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #4B5563;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #1F2937;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.jpg" alt="AyurWell Logo" class="h-12 w-12 rounded-full border-2 border-green-200">
+                <h1 class="text-3xl font-playfair">AyurWell</h1>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-green-200 hover:text-white">About</a>
+                <a href="#doshas" class="text-green-200 hover:text-white">The Doshas</a>
+                <a href="#shop" class="text-green-200 hover:text-white">Products</a>
+                <a href="#articles" class="text-green-200 hover:text-white">Articles</a>
+                <a href="login.html" class="text-green-200 hover:text-white">Login</a>
+                <a href="login.html" class="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition duration-300">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-gradient">
+            <div id="particles-js"></div>
+            <div class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center hero-content">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-green-900 leading-tight mb-4">Discover Your Inner Harmony.</h2>
+                    <div class="slider-container">
+                        <div class="slider-content animate-scroll-left">
+                            <span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span><span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-700 mb-8">Ayurveda teaches that balance is the key to wellness. Find your unique mind-body constitution by taking our curated 10-question quiz to reveal your dominant dosha.</p>
+                    <button id="start-quiz-btn" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">Find Your Dosha</button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                     <img src="main.png" alt="Ayurvedic Wellness" class="w-full max-w-lg">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white py-20 overflow-hidden">
+            <div class="container mx-auto px-6 text-center reveal-on-scroll">
+                <h3 class="text-3xl font-bold text-green-900 mb-4">Ancient Wisdom for Modern Wellness</h3>
+                <p class="text-gray-600 mb-12 max-w-3xl mx-auto">Ayurveda is a 5,000-year-old system of natural healing from India. It teaches that health is a state of vibrant balance between our environment, body, mind, and spirit. AyurWell is your personal guide on this journey.</p>
+                <div class="grid md:grid-cols-2 gap-12 text-left max-w-4xl mx-auto">
+                    <div>
+                        <h4 class="text-2xl font-semibold text-green-800 mb-3">Our Philosophy</h4>
+                        <p class="text-gray-600">We believe in the core Ayurvedic principle that the mind and body are intrinsically linked. Our philosophy is built on the pillars of "food as medicine," prevention over cure, and honoring the unique needs of every individual. We aim to empower you with knowledge, not just information.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-semibold text-green-800 mb-3">How It Works</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                            <li><span class="font-semibold">Discover Your Dosha:</span> Take our quick, curated quiz to identify your unique mind-body constitution.</li>
+                            <li><span class="font-semibold">Get Your Plan:</span> Receive a personalized diet chart and lifestyle tips tailored to bring you into balance.</li>
+                            <li><span class="font-semibold">Live in Harmony:</span> Apply this ancient wisdom to your modern life for lasting health and vitality.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="doshas" class="py-20 overflow-hidden">
+            <div class="container mx-auto px-6 text-center reveal-on-scroll">
+                <h3 class="text-3xl font-bold text-green-900 mb-4">Understanding the Three Doshas</h3>
+                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">The doshas are the three fundamental energies that govern our inner and outer environments: Vata, Pitta, and Kapha. Click on a card to learn more.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                     <div class="flex flex-col items-center cursor-pointer transform hover:scale-105 transition-transform" data-dosha="Vata">
+                        <img src="Vata.png" alt="Vata Dosha" class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 border-green-200">
+                        <h4 class="text-2xl font-semibold text-green-800 mb-2">Vata (Air & Ether)</h4>
+                        <p class="text-gray-600">The energy of movement. Vata types are typically energetic, creative, and lively.</p>
+                    </div>
+                    <div class="flex flex-col items-center cursor-pointer transform hover:scale-105 transition-transform" data-dosha="Pitta">
+                        <img src="Pitta.png" alt="Pitta Dosha" class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 border-amber-200">
+                        <h4 class="text-2xl font-semibold text-amber-800 mb-2">Pitta (Fire & Water)</h4>
+                        <p class="text-gray-600">The energy of digestion and metabolism. Pitta individuals are often intelligent and focused.</p>
+                    </div>
+                    <div class="flex flex-col items-center cursor-pointer transform hover:scale-105 transition-transform" data-dosha="Kapha">
+                        <img src="Kapha.png" alt="Kapha Dosha" class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 border-emerald-200">
+                        <h4 class="text-2xl font-semibold text-emerald-800 mb-2">Kapha (Earth & Water)</h4>
+                        <p class="text-gray-600">The energy of structure and stability. Kapha types are calm, loving, and grounded.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shop" class="bg-white py-20 overflow-hidden">
+            <div class="container mx-auto px-6 text-center reveal-on-scroll">
+                <h3 class="text-3xl font-bold text-green-900 mb-4">Shop Our Herbal Essentials</h3>
+                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Support your journey to balance with our curated selection of high-quality Ayurvedic herbs and products.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/A7F3D0/10B981?text=Ashwagandha" alt="Ashwagandha" class="w-full h-48 object-cover">
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Ashwagandha</h4>
+                            <p class="text-gray-800 font-semibold mb-4">₹450</p>
+                            <button class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/FDE68A/F59E0B?text=Turmeric" alt="Turmeric" class="w-full h-48 object-cover">
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Turmeric Capsules</h4>
+                            <p class="text-gray-800 font-semibold mb-4">₹300</p>
+                            <button class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/A7F3D0/10B981?text=Triphala" alt="Triphala" class="w-full h-48 object-cover">
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Triphala Powder</h4>
+                            <p class="text-gray-800 font-semibold mb-4">₹375</p>
+                            <button class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/A7F3D0/10B981?text=Brahmi" alt="Brahmi" class="w-full h-48 object-cover">
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Brahmi Oil</h4>
+                            <p class="text-gray-800 font-semibold mb-4">₹400</p>
+                            <button class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <button id="more-products-btn" class="text-green-600 font-semibold hover:text-green-800 transition">Explore More Products &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="py-20 overflow-hidden">
+             <div class="container mx-auto px-6 text-center reveal-on-scroll">
+                <h3 class="text-3xl font-bold text-green-900 mb-4">Explore Our Articles</h3>
+                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Deepen your understanding of Ayurvedic principles and learn how to apply them to your daily life for lasting wellness.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article1.png" alt="Eating for Vata" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">The Key to Balanced Health and Wellness</h4>
+                            <p class="text-gray-600 mb-4">Covers the traits and lifestyle recommendations for each dosha—Vata, Pitta, and Kapha—and how to maintain harmony through diet and daily routines.</p>
+                            <a href="https://sohumhealing.com/understanding-ayurvedic-doshas-the-key-to-balanced-health-and-wellness/?utm_source=chatgpt.com" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article2.png" alt="Lifestyle for Pitta" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">What Is Ayurveda?</h4>
+                            <p class="text-gray-600 mb-4">A trusted medical overview of Ayurveda, explaining doshas, holistic wellness, and modern-day applications like diet, lifestyle, and natural treatments.</p>
+                            <a href="https://www.hopkinsmedicine.org/health/wellness-and-prevention/ayurveda?utm_source=chatgpt.com" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article3.jpeg" alt="Herbs for Kapha" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Principles and Their Application in Modern Health</h4>
+                            <p class="text-gray-600 mb-4">Highlights Ayurvedic practices including diet (Ahara), massage (Abhyanga), yoga, and meditation—showing how they support dosha balance in contemporary contexts.</p>
+                            <a href="https://bnrc.springeropen.com/articles/10.1186/s42269-024-01231-0?utm_source=chatgpt.com" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article4.png" alt="Dinacharya" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">The Influence of Doshas on Health in Ayurveda</h4>
+                            <p class="text-gray-600 mb-4">Breaks down how each dosha influences physical, emotional, and mental well-being. Also discusses dosha imbalances and simple balancing recommendations.</p>
+                            <a href="https://timesofindia.indiatimes.com/astrology/kundali-dasha-remedies/the-influence-of-doshas-on-health-in-ayurveda/articleshow/110657598.cms" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article5.png" alt="Meditation" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Rasa–Guna Food Framework & Ayurgenomics</h4>
+                            <p class="text-gray-600 mb-4">Scientific connections between food properties and dosha profiling.</p>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4815005/" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="article6.jpeg" alt="Agni" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">Ideal Environment per Dosha</h4>
+                            <p class="text-gray-600 mb-4">Geographical and environmental alignment for dosha wellness.
+</p>
+                            <a href="https://www.ayurvedacollege.com/blog/finding-your-ideal-living-environment-according-to-ayurveda/?utm_source=chatgpt.com" class="font-semibold text-green-600 hover:text-green-800">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq" class="bg-white py-20 overflow-hidden">
+            <div class="container mx-auto px-6 reveal-on-scroll">
+                <h3 class="text-3xl font-bold text-green-900 mb-12 text-center">Frequently Asked Questions</h3>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <div class="faq-question flex justify-between items-center py-2">
+                            <h4 class="text-lg font-semibold text-green-800">What is Ayurveda?</h4>
+                            <span class="text-green-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 pt-2">
+                            <p>Ayurveda is a traditional system of medicine with historical roots in the Indian subcontinent. It is based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit. Its main goal is to promote good health, rather than fight disease.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <div class="faq-question flex justify-between items-center py-2">
+                            <h4 class="text-lg font-semibold text-green-800">What are Doshas?</h4>
+                            <span class="text-green-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 pt-2">
+                            <p>In Ayurveda, the three doshas—Vata, Pitta, and Kapha—are the primary life forces or biological energies found throughout the human body and mind. They govern all physical and mental processes and provide every living being with an individual blueprint for health and fulfillment.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <div class="faq-question flex justify-between items-center py-2">
+                            <h4 class="text-lg font-semibold text-green-800">How accurate is the Dosha quiz?</h4>
+                            <span class="text-green-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 pt-2">
+                            <p>Our quiz is designed to provide a strong indication of your dominant dosha based on your long-term physical, mental, and emotional tendencies. While it's a great starting point, a full consultation with an Ayurvedic practitioner is recommended for a complete and nuanced diagnosis.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item border-b border-gray-200 pb-4">
+                        <div class="faq-question flex justify-between items-center py-2">
+                            <h4 class="text-lg font-semibold text-green-800">Is Ayurveda a replacement for modern medicine?</h4>
+                            <span class="text-green-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                        </div>
+                        <div class="faq-answer text-gray-600 pt-2">
+                            <p>No, Ayurveda should be considered a complementary approach to wellness. It focuses on lifestyle, diet, and natural remedies to maintain balance and prevent illness. Always consult your doctor for any serious health concerns or before making significant changes to your health regimen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-green-900 text-white pt-20 pb-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+                <div class="lg:col-span-2">
+                    <h3 class="font-bold text-lg mb-4">AyurWell</h3>
+                    <p class="text-green-300 mb-4 pr-4">Your modern guide to ancient wellness. Discover your dosha, get personalized diet charts, and live in harmony.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-green-400"> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.116 0-3.472.01-4.695.067-2.71.124-3.953 1.37-4.078 4.078-.057 1.223-.067 1.578-.067 4.695s.01 3.472.067 4.695c.124 2.709 1.368 3.953 4.078 4.078 1.223.057 1.578.067 4.695.067s3.472-.01 4.695-.067c2.71-.124 3.953-1.37 4.078-4.078.057-1.223.067-1.578.067-4.695s-.01-3.472-.067-4.695c-.124-2.709-1.368-3.953-4.078-4.078-1.223-.057-1.578-.067-4.695-.067zM12 7.23a4.77 4.77 0 100 9.54 4.77 4.77 0 000-9.54zm0 7.73a2.96 2.96 0 110-5.92 2.96 2.96 0 010 5.92zm4.965-7.158a1.125 1.125 0 100 2.25 1.125 1.125 0 000-2.25z"/></svg></a>
+                        <a href="#" class="hover:text-green-400"> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 7.373c-.227-.813-.868-1.455-1.68-1.68C18.23 5.25 12 5.25 12 5.25s-6.23 0-7.902.443c-.813.227-1.455.868-1.68 1.68C2 9.046 2 12 2 12s0 2.954.443 4.627c.227.813.868 1.455 1.68 1.68C5.77 18.75 12 18.75 12 18.75s6.23 0 7.902-.443c.813-.227 1.455-.868 1.68-1.68C22 14.954 22 12 22 12s0-2.954-.418-4.627zM9.75 14.85V9.15l5.19 2.85-5.19 2.85z"/></svg></a>
+                        <a href="#" class="hover:text-green-400"> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:underline">Home</a></li>
+                        <li class="mb-2"><a href="#about" class="hover:underline">About</a></li>
+                        <li class="mb-2"><a href="#start-quiz-btn" class="hover:underline">Quiz</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">Contact</a></li>
+                        <li class="mb-2"><a href="#articles" class="hover:underline">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Features</h3>
+                     <ul>
+                        <li class="mb-2 text-green-300">Personalized Quiz</li>
+                        <li class="mb-2 text-green-300">Diet Charts</li>
+                        <li class="mb-2 text-green-300">Lifestyle Tips</li>
+                        <li class="mb-2 text-green-300">Herbal Shop</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Contact Us</h3>
+                    <ul>
+                        <li class="mb-2"><a href="mailto:hello@ayurwell.com" class="hover:underline">hello@ayurwell.com</a></li>
+                        <li class="mb-2"><a href="tel:+911234567890" class="hover:underline">+91 123 456 7890</a></li>
+                    </ul>
+                </div>
+            </div>
+             <div class="border-t border-green-700 pt-8 mt-4 mb-8">
+                <h3 class="font-bold mb-4 text-center">Quote of the Day</h3>
+                <p id="quote-of-the-day" class="italic text-green-300 text-center max-w-2xl mx-auto"></p>
+            </div>
+             <div class="border-t border-green-700 pt-8 mt-4 mb-8">
+                <h3 class="font-bold mb-4 text-center">Testimonials</h3>
+                <div id="testimonial-slider" class="text-green-300 text-center max-w-2xl mx-auto h-12"></div>
+            </div>
+            <div class="border-t border-green-700 pt-8 mt-10">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm">
+                    <div class="mb-4 md:mb-0">
+                        <p id="copyright">&copy; AyurWell. All rights reserved.</p>
+                        <p class="text-xs text-green-300 mt-1">Disclaimer: Not a substitute for professional medical advice.</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="tooltip"><span class="tooltiptext">Vata</span>💨</div>
+                        <div class="tooltip"><span class="tooltiptext">Pitta</span>🔥</div>
+                        <div class="tooltip"><span class="tooltiptext">Kapha</span>💧</div>
+                        <select class="bg-green-800 border border-green-600 rounded-md p-1">
+                            <option>English</option>
+                            <option>Hindi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="dosha-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl p-8 relative transform scale-95 transition-transform duration-300">
+            <button id="close-dosha-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="flex-shrink-0 text-center">
+                    <img id="dosha-modal-img" src="" alt="" class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 mx-auto">
+                    <h2 id="dosha-modal-title" class="text-3xl font-bold mb-2"></h2>
+                    <p id="dosha-modal-elements" class="text-gray-500 font-semibold"></p>
+                </div>
+                <div class="w-full">
+                    <div id="dosha-modal-content" class="space-y-4 text-left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="more-products-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button id="close-more-products-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-3xl">&times;</button>
+            <h2 class="text-3xl font-bold text-green-900 mb-8 text-center">Our Full Range of Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- More products will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="quiz-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl p-8 relative">
+            <button id="close-quiz-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-3xl">&times;</button>
+            <h2 id="question-text" class="text-2xl font-bold mb-6 text-center text-green-900"></h2>
+            <div id="options-container" class="grid grid-cols-1 gap-4"></div>
+            <div class="mt-8 flex justify-between items-center">
+                <button id="back-quiz-btn" class="bg-gray-300 text-gray-800 font-bold py-2 px-6 rounded-full hover:bg-gray-400 transition">Back</button>
+                <div class="w-1/2">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5"><div id="progress-bar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%"></div></div>
+                    <p id="progress-text" class="text-center text-sm text-gray-500 mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="results-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-6xl p-8 relative max-h-[90vh] overflow-y-auto">
+             <button id="close-results" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                 <div class="lg:col-span-2 text-center">
+                    <h2 class="text-3xl font-bold text-green-900">Your Ayurvedic Profile</h2>
+                    <p class="text-gray-600 mb-4">Based on your answers, your dominant energy is:</p>
+                    <div class="flex justify-center my-6">
+                        <img id="dosha-result-image" src="" alt="Dominant Dosha Image" class="w-48 h-48 rounded-full object-cover shadow-2xl border-8" >
+                    </div>
+                    <p class="text-5xl font-playfair mb-4" id="dominant-dosha-styled"></p>
+                    <p id="result-description" class="text-gray-700 max-w-md mx-auto mb-6"></p>
+
+                    <h3 class="text-xl font-bold text-green-800 border-b-2 border-green-200 pb-2 mb-4">Dosha Composition</h3>
+                    <div class="flex justify-around items-start text-center gap-4 mb-6">
+                        <div>
+                            <img src="Vata.png" alt="Vata" class="w-24 h-24 rounded-full object-cover mx-auto mb-2 border-4 border-blue-200 shadow-md">
+                            <p class="text-2xl font-bold text-blue-500" id="vata-percent"></p>
+                            <p class="font-semibold text-gray-700">Vata</p>
+                        </div>
+                        <div>
+                            <img src="Pitta.png" alt="Pitta" class="w-24 h-24 rounded-full object-cover mx-auto mb-2 border-4 border-amber-200 shadow-md">
+                            <p class="text-2xl font-bold text-amber-500" id="pitta-percent"></p>
+                            <p class="font-semibold text-gray-700">Pitta</p>
+                        </div>
+                        <div>
+                            <img src="Kapha.png" alt="Kapha" class="w-24 h-24 rounded-full object-cover mx-auto mb-2 border-4 border-emerald-200 shadow-md">
+                            <p class="text-2xl font-bold text-emerald-500" id="kapha-percent"></p>
+                            <p class="font-semibold text-gray-700">Kapha</p>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="lg:col-span-3">
+                     <h3 class="text-2xl font-bold text-green-800 border-b-2 border-green-200 pb-2 mb-4">Your 7-Day Diet Plan</h3>
+                    <div id="diet-chart-container" class="text-left text-sm mb-6"></div>
+                    <div class="text-center">
+                        <button id="download-chart-btn" class="bg-emerald-500 text-white font-bold py-2 px-6 rounded-full hover:bg-emerald-600 transition">Download Diet Chart</button>
+                    </div>
+
+                    <div id="lifestyle-recommendations" class="mt-6 bg-green-50 p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">Lifestyle Recommendations</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <!-- JS will populate this -->
+                        </ul>
+                    </div>
+
+                    <div class="mt-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-3 text-center">Recommended Products</h3>
+                        <div id="recommended-products" class="flex justify-center gap-4">
+                           <!-- JS will populate this -->
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Element Selectors
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const quizModal = document.getElementById('quiz-modal');
+        const closeQuizBtn = document.getElementById('close-quiz-btn');
+        const backQuizBtn = document.getElementById('back-quiz-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const resultsModal = document.getElementById('results-modal');
+        const closeResultsBtn = document.getElementById('close-results');
+        const dominantDoshaStyledEl = document.getElementById('dominant-dosha-styled');
+        const vataPercentEl = document.getElementById('vata-percent');
+        const pittaPercentEl = document.getElementById('pitta-percent');
+        const kaphaPercentEl = document.getElementById('kapha-percent');
+        const dietChartContainer = document.getElementById('diet-chart-container');
+        const downloadChartBtn = document.getElementById('download-chart-btn');
+        const doshaResultImage = document.getElementById('dosha-result-image');
+        const resultDescription = document.getElementById('result-description');
+        const lifestyleRecs = document.getElementById('lifestyle-recommendations').querySelector('ul');
+        const recommendedProductsEl = document.getElementById('recommended-products');
+        const doshaCards = document.querySelectorAll('[data-dosha]');
+        const doshaModal = document.getElementById('dosha-modal');
+        const closeDoshaModalBtn = document.getElementById('close-dosha-modal');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const moreProductsBtn = document.getElementById('more-products-btn');
+        const moreProductsModal = document.getElementById('more-products-modal');
+        const closeMoreProductsBtn = document.getElementById('close-more-products-btn');
+
+        // Data
+        const questions = [
+            {"id":1,"question":"What best describes your body frame?","options":[{"text":"Thin & lean","dosha":"Vata"},{"text":"Medium, muscular","dosha":"Pitta"},{"text":"Broad, heavy","dosha":"Kapha"}]},
+            {"id":2,"question":"What is your usual body weight tendency?","options":[{"text":"Underweight","dosha":"Vata"},{"text":"Normal","dosha":"Pitta"},{"text":"Overweight","dosha":"Kapha"}]},
+            {"id":5,"question":"How would you describe your skin?","options":[{"text":"Dry, rough","dosha":"Vata"},{"text":"Soft, warm, sometimes reddish","dosha":"Pitta"},{"text":"Smooth, oily","dosha":"Kapha"}]},
+            {"id":3,"question":"How would you describe your hair type?","options":[{"text":"Dry & brittle","dosha":"Vata"},{"text":"Normal, straight","dosha":"Pitta"},{"text":"Thick, oily","dosha":"Kapha"}]},
+            {"id":8,"question":"How is your body temperature usually?","options":[{"text":"Cold hands/feet","dosha":"Vata"},{"text":"Warm, tends to feel hot","dosha":"Pitta"},{"text":"Normal to cool","dosha":"Kapha"}]},
+            {"id":11,"question":"How is your digestion?","options":[{"text":"Irregular, bloating","dosha":"Vata"},{"text":"Strong, sharp hunger","dosha":"Pitta"},{"text":"Slow, heavy","dosha":"Kapha"}]},
+            {"id":13,"question":"How is your sleep pattern?","options":[{"text":"Light, interrupted","dosha":"Vata"},{"text":"Moderate, 6–8 hrs","dosha":"Pitta"},{"text":"Deep, long sleep","dosha":"Kapha"}]},
+            {"id":14,"question":"How is your stamina/energy?","options":[{"text":"Low, gets tired easily","dosha":"Vata"},{"text":"Medium, energetic","dosha":"Pitta"},{"text":"High endurance, stable","dosha":"Kapha"}]},
+            {"id":16,"question":"How is your mental activity?","options":[{"text":"Restless, anxious","dosha":"Vata"},{"text":"Focused, aggressive","dosha":"Pitta"},{"text":"Calm, peaceful","dosha":"Kapha"}]},
+            {"id":21,"question":"How do you usually respond under stress?","options":[{"text":"Fearful, worried","dosha":"Vata"},{"text":"Angry, irritable","dosha":"Pitta"},{"text":"Calm, sometimes withdrawn","dosha":"Kapha"}]}
+        ];
+        
+        const doshaDetails = {
+            Vata: {
+                color: "text-blue-500",
+                borderColor: "border-blue-200",
+                image: "Vata.png",
+                largeImage: "https://placehold.co/600x600/BFDBFE/3B82F6?text=Vata+Harmony",
+                elements: "Air & Ether",
+                content: {
+                    "Qualities": "Light, Cold, Dry, Rough, Mobile, Subtle, Clear.",
+                    "Balanced State": "Creative, energetic, and enthusiastic. Possesses a natural ability to express and communicate.",
+                    "Imbalanced State": "Prone to anxiety, fear, and insomnia. May experience dry skin, constipation, and restlessness.",
+                    "Balancing Tips": "Maintain a regular routine, stay warm, and consume warm, nourishing, slightly oily foods. Gentle exercise like yoga and tai chi is beneficial."
+                },
+                description: "You are energetic, creative, and lively. Your challenge is to stay grounded and maintain a routine.",
+                lifestyle: ["Follow a consistent daily routine.", "Eat warm, cooked foods and avoid cold, raw items.", "Practice calming activities like meditation or gentle yoga.", "Stay warm and avoid cold, windy environments."],
+                products: ["Ashwagandha", "Triphala"]
+            },
+            Pitta: {
+                color: "text-amber-500",
+                borderColor: "border-amber-200",
+                image: "Pitta.png",
+                largeImage: "https://placehold.co/600x600/FDE68A/F59E0B?text=Pitta+Calm",
+                elements: "Fire & Water",
+                content: {
+                    "Qualities": "Hot, Sharp, Light, Liquid, Spreading, Oily.",
+                    "Balanced State": "Intelligent, focused, and a strong leader. Possesses a sharp wit and a good appetite.",
+                    "Imbalanced State": "Can become irritable, angry, and judgmental. Prone to inflammation, skin rashes, and acidity.",
+                    "Balancing Tips": "Stay cool and avoid excessive heat. Favor sweet, bitter, and astringent foods. Practice moderation in all activities and cultivate patience."
+                },
+                description: "You are intelligent, focused, and a natural leader. Your goal is to manage your intensity and stay cool.",
+                lifestyle: ["Avoid excessive heat and sun exposure.", "Incorporate cooling foods like cucumber, mint, and cilantro into your diet.", "Practice moderation and avoid overworking.", "Engage in calming activities like swimming or walking in nature."],
+                products: ["Turmeric Capsules", "Neem Capsules"]
+            },
+            Kapha: {
+                color: "text-emerald-500",
+                borderColor: "border-emerald-200",
+                image: "Kapha.png",
+                largeImage: "https://placehold.co/600x600/A7F3D0/10B981?text=Kapha+Energy",
+                elements: "Earth & Water",
+                content: {
+                    "Qualities": "Heavy, Slow, Cool, Oily, Smooth, Dense, Stable.",
+                    "Balanced State": "Calm, loving, and compassionate. Strong stamina and a stable, grounded personality.",
+                    "Imbalanced State": "May experience sluggishness, weight gain, and congestion. Can be prone to possessiveness and resistance to change.",
+                    "Balancing Tips": "Seek regular stimulation and exercise. Eat light, dry, and warm foods with pungent, bitter, and astringent tastes. Avoid heavy, oily foods and daytime naps."
+                },
+                description: "You are calm, loving, and grounded. Your key is to stay active and seek new experiences.",
+                lifestyle: ["Engage in vigorous, regular exercise.", "Eat light, warm, and spicy foods.", "Avoid heavy, oily, and cold foods, especially dairy.", "Wake up early and avoid daytime naps."],
+                products: ["Triphala Powder", "Guduchi"]
+            }
+        };
+
+        const allProducts = {
+            "Ashwagandha": { price: "₹450", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Ashwagandha" },
+            "Turmeric Capsules": { price: "₹300", img: "https://placehold.co/400x300/FDE68A/F59E0B?text=Turmeric" },
+            "Triphala Powder": { price: "₹375", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Triphala" },
+            "Brahmi Oil": { price: "₹400", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Brahmi" },
+            "Shatavari": { price: "₹550", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Shatavari" },
+            "Guduchi": { price: "₹480", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Guduchi" },
+            "Neem Capsules": { price: "₹320", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Neem" }
+        };
+
+        const dietCharts = {
+            Vata: {
+                Monday: { B: "Warm oatmeal with cinnamon", L: "Mung bean soup with basmati rice", D: "Baked sweet potato with ghee" },
+                Tuesday: { B: "Scrambled eggs with avocado", L: "Chicken and vegetable stew", D: "Creamy tomato soup" },
+                Wednesday: { B: "Rice pudding with cardamom", L: "Lentil shepherd's pie", D: "Steamed asparagus and carrots" },
+                Thursday: { B: "Warm almond milk with dates", L: "Quinoa with roasted root vegetables", D: "Pumpkin soup" },
+                Friday: { B: "Cooked apples with cloves", L: "Salmon with lemon and dill", D: "Pasta with a creamy sauce" },
+                Saturday: { B: "Buckwheat porridge", L: "Hearty beef and barley soup", D: "Kitchari (mung beans and rice)" },
+                Sunday: { B: "Warm smoothie with ginger", L: "Shepherd's pie with sweet potato topping", D: "Simple vegetable broth" }
+            },
+            Pitta: {
+                Monday: { B: "Apple and pear slices", L: "Chickpea salad with cucumber", D: "Steamed vegetables with rice" },
+                Tuesday: { B: "Toast with coconut oil", L: "Black bean burgers on lettuce", D: "Lentil soup" },
+                Wednesday: { B: "Date and fig smoothie", L: "Quinoa salad with mint", D: "Zucchini noodles with a light sauce" },
+                Thursday: { B: "Oatmeal with sweet berries", L: "Turkey wraps with plenty of greens", D: "Steamed broccoli and cauliflower" },
+                Friday: { B: "Fresh mango slices", L: "Sushi with avocado and cucumber", D: "Mung dahl with cilantro" },
+                Saturday: { B: "Rice flakes porridge", L: "Cooling cucumber and avocado soup", D: "Baked fish with herbs" },
+                Sunday: { B: "Coconut yogurt with granola", L: "Large green salad with sunflower seeds", D: "Simple rice and steamed asparagus" }
+            },
+            Kapha: {
+                Monday: { B: "Stewed apples with cinnamon", L: "Spicy lentil soup", D: "Roasted vegetables with pepper" },
+                Tuesday: { B: "Dry toast with honey", L: "Large salad with a light vinaigrette", D: "Steamed greens with ginger" },
+                Wednesday: { B: "Hot barley cereal", L: "Quinoa with steamed broccoli", D: "Mung bean soup" },
+                Thursday: { B: "Puffed rice with ginger tea", L: "Chicken and vegetable skewers", D: "Baked fish with lemon" },
+                Friday: { B: "A piece of fruit (e.g., apple)", L: "Black bean soup with extra spice", D: "Stir-fried vegetables (no oil)" },
+                Saturday: { B: "Corn grits with black pepper", L: "Spicy chickpea and tomato stew", D: "Millet with steamed kale" },
+                Sunday: { B: "Buckwheat pancakes (no syrup)", L: "Vegetable broth with lots of spices", D: "Grilled vegetables" }
+            }
+        };
+
+        let currentQuestionIndex = 0;
+        let doshaScores = { Vata: 0, Pitta: 0, Kapha: 0 };
+        let userAnswers = [];
+        let userProfile = {};
+
+        // Quiz Logic
+        const startQuiz = () => { currentQuestionIndex = 0; doshaScores = { Vata: 0, Pitta: 0, Kapha: 0 }; userAnswers = []; quizModal.classList.remove('hidden'); showQuestion(); };
+        const showQuestion = () => { const question = questions[currentQuestionIndex]; questionText.textContent = question.question; optionsContainer.innerHTML = ''; question.options.forEach(option => { const button = document.createElement('button'); button.textContent = option.text; button.className = 'w-full p-4 bg-gray-100 rounded-lg text-left transition duration-300 quiz-option hover:bg-green-200'; button.onclick = () => selectAnswer(option.dosha); optionsContainer.appendChild(button); }); updateProgress(); };
+        const selectAnswer = (dosha) => { doshaScores[dosha]++; userAnswers.push(dosha); currentQuestionIndex++; if (currentQuestionIndex < questions.length) { showQuestion(); } else { calculateResults(); } };
+        const goBack = () => { if (currentQuestionIndex > 0) { const lastAnswer = userAnswers.pop(); doshaScores[lastAnswer]--; currentQuestionIndex--; showQuestion(); } };
+        const updateProgress = () => { const progress = ((currentQuestionIndex) / questions.length) * 100; progressBar.style.width = `${progress}%`; progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`; backQuizBtn.classList.toggle('hidden', currentQuestionIndex === 0); };
+        const calculateResults = () => { const total = Object.values(doshaScores).reduce((s, c) => s + c, 0) || 1; const percentages = { Vata: Math.round((doshaScores.Vata / total) * 100), Pitta: Math.round((doshaScores.Pitta / total) * 100), Kapha: Math.round((doshaScores.Kapha / total) * 100), }; const dominantDosha = Object.keys(percentages).reduce((a, b) => percentages[a] > percentages[b] ? a : b); userProfile = { dominantDosha, percentages }; localStorage.setItem('ayurBalanceProfile', JSON.stringify(userProfile)); displayResults(userProfile); quizModal.classList.add('hidden'); };
+        
+        const generateDietTable = (dosha) => {
+            const chartData = dietCharts[dosha];
+            let tableHTML = `<table class="w-full border-collapse"><thead><tr class="bg-green-100"><th class="border p-2">Day</th><th class="border p-2">Breakfast</th><th class="border p-2">Lunch</th><th class="border p-2">Dinner</th></tr></thead><tbody>`;
+            for (const day in chartData) {
+                tableHTML += `<tr><td class="border p-2 font-semibold">${day}</td><td class="border p-2">${chartData[day].B}</td><td class="border p-2">${chartData[day].L}</td><td class="border p-2">${chartData[day].D}</td></tr>`;
+            }
+            tableHTML += `</tbody></table>`;
+            return tableHTML;
+        };
+        
+        const displayResults = ({ dominantDosha, percentages }) => {
+            const doshaInfo = doshaDetails[dominantDosha];
+            dominantDoshaStyledEl.className = `text-5xl font-playfair mb-4 ${doshaInfo.color}`;
+            dominantDoshaStyledEl.textContent = dominantDosha;
+            
+            doshaResultImage.src = doshaInfo.image;
+            doshaResultImage.alt = `${dominantDosha} Dosha`;
+            doshaResultImage.className = `w-48 h-48 rounded-full object-cover shadow-2xl border-8 ${doshaInfo.borderColor}`;
+            
+            resultDescription.textContent = doshaInfo.description;
+
+            vataPercentEl.textContent = `${percentages.Vata}%`;
+            pittaPercentEl.textContent = `${percentages.Pitta}%`;
+            kaphaPercentEl.textContent = `${percentages.Kapha}%`;
+            
+            dietChartContainer.innerHTML = generateDietTable(dominantDosha);
+
+            lifestyleRecs.innerHTML = '';
+            doshaInfo.lifestyle.forEach(tip => {
+                const li = document.createElement('li');
+                li.textContent = tip;
+                lifestyleRecs.appendChild(li);
+            });
+            
+            recommendedProductsEl.innerHTML = '';
+            doshaInfo.products.forEach(productName => {
+                const product = allProducts[productName];
+                if(product) {
+                    recommendedProductsEl.innerHTML += `
+                        <div class="text-center">
+                            <img src="${product.img}" alt="${productName}" class="w-24 h-24 rounded-lg object-cover mx-auto mb-2 shadow-md">
+                            <h5 class="font-semibold text-green-800">${productName}</h5>
+                            <p class="text-sm text-gray-600">${product.price}</p>
+                        </div>
+                    `;
+                }
+            });
+
+            resultsModal.classList.remove('hidden');
+        };
+        
+        const downloadDietChart = () => {
+            const dosha = userProfile.dominantDosha;
+            if (!dosha) return;
+            let textContent = `Your 7-Day Diet Chart for ${dosha} Dosha\n\n`;
+            const chartData = dietCharts[dosha];
+            for (const day in chartData) {
+                textContent += `${day.toUpperCase()}\n`;
+                textContent += `  Breakfast: ${chartData[day].B}\n`;
+                textContent += `  Lunch: ${chartData[day].L}\n`;
+                textContent += `  Dinner: ${chartData[day].D}\n\n`;
+            }
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${dosha}_Diet_Chart.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        };
+
+        // Dosha Modal Logic (Improved UI)
+        const openDoshaModal = (dosha) => {
+            const details = doshaDetails[dosha];
+            document.getElementById('dosha-modal-img').src = details.image;
+            document.getElementById('dosha-modal-img').className = `w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 mx-auto ${details.borderColor}`;
+            document.getElementById('dosha-modal-title').textContent = dosha;
+            document.getElementById('dosha-modal-title').className = `text-3xl font-bold mb-2 ${details.color}`;
+            document.getElementById('dosha-modal-elements').textContent = details.elements;
+            
+            const contentContainer = document.getElementById('dosha-modal-content');
+            contentContainer.innerHTML = '';
+            for (const key in details.content) {
+                const section = document.createElement('div');
+                section.innerHTML = `
+                    <h4 class="font-bold text-lg text-green-800">${key}</h4>
+                    <p class="text-gray-600">${details.content[key]}</p>
+                `;
+                contentContainer.appendChild(section);
+            }
+            
+            doshaModal.classList.remove('hidden');
+            setTimeout(() => {
+                doshaModal.querySelector('div').classList.remove('scale-95');
+                doshaModal.classList.remove('opacity-0');
+            }, 10);
+        };
+
+        const closeDoshaModal = () => {
+             doshaModal.querySelector('div').classList.add('scale-95');
+             doshaModal.classList.add('opacity-0');
+             setTimeout(() => doshaModal.classList.add('hidden'), 300);
+        }
+
+        // More Products Modal Logic
+        const populateMoreProducts = () => {
+            const products = [
+                { name: "Shatavari", price: "₹550", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Shatavari" },
+                { name: "Guduchi", price: "₹480", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Guduchi" },
+                { name: "Neem Capsules", price: "₹320", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Neem" },
+                { name: "Amla Powder", price: "₹250", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Amla" },
+                { name: "Mahanarayan Oil", price: "₹600", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Mahanarayan+Oil" },
+                { name: "Chyawanprash", price: "₹750", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Chyawanprash" },
+                { name: "Gotu Kola", price: "₹490", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Gotu+Kola" },
+                { name: "Licorice Root", price: "₹350", img: "https://placehold.co/400x300/A7F3D0/10B981?text=Licorice" },
+            ];
+            const container = moreProductsModal.querySelector('.grid');
+            container.innerHTML = '';
+            products.forEach(p => {
+                container.innerHTML += `
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="${p.img}" alt="${p.name}" class="w-full h-48 object-cover">
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-bold text-green-800 mb-2">${p.name}</h4>
+                            <p class="text-gray-800 font-semibold mb-4">${p.price}</p>
+                            <button class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+
+        // FAQ Accordion
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('span');
+            question.addEventListener('click', () => {
+                const isOpened = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+                if (isOpened) {
+                    answer.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+        
+        // Event Listeners
+        startQuizBtn.addEventListener('click', startQuiz);
+        closeQuizBtn.addEventListener('click', () => quizModal.classList.add('hidden'));
+        backQuizBtn.addEventListener('click', goBack);
+        closeResultsBtn.addEventListener('click', () => resultsModal.classList.add('hidden'));
+        downloadChartBtn.addEventListener('click', downloadDietChart);
+        doshaCards.forEach(card => card.addEventListener('click', () => openDoshaModal(card.dataset.dosha)));
+        closeDoshaModalBtn.addEventListener('click', closeDoshaModal);
+        moreProductsBtn.addEventListener('click', () => moreProductsModal.classList.remove('hidden'));
+        closeMoreProductsBtn.addEventListener('click', () => moreProductsModal.classList.add('hidden'));
+
+        // Page Load Initializations
+        populateMoreProducts();
+        const savedProfile = localStorage.getItem('ayurBalanceProfile');
+        if (savedProfile) userProfile = JSON.parse(savedProfile);
+
+        // Testimonial Slider
+        const testimonials = [
+            'This quiz was spot on! The diet tips have made a huge difference.',
+            'Finally, a simple way to understand Ayurveda. Highly recommend!',
+            'I feel more energetic and balanced since following my dosha plan.'
+        ];
+        let currentTestimonial = 0;
+        const testimonialContainer = document.getElementById('testimonial-slider');
+        function showTestimonial() {
+            if(testimonialContainer) {
+                testimonialContainer.innerHTML = `<p class="italic transition-opacity duration-500 opacity-100">"${testimonials[currentTestimonial]}"</p>`;
+            }
+        }
+        function nextTestimonial() {
+            if(testimonialContainer) {
+                testimonialContainer.innerHTML = `<p class="italic transition-opacity duration-500 opacity-0">"${testimonials[currentTestimonial]}"</p>`;
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                setTimeout(showTestimonial, 500);
+            }
+        }
+        if(testimonialContainer) {
+            showTestimonial();
+            setInterval(nextTestimonial, 5000);
+        }
+
+        // Copyright Year
+        const copyright = document.getElementById('copyright');
+        if(copyright) {
+            copyright.innerHTML = `&copy; ${new Date().getFullYear()} AyurWell. All rights reserved.`;
+        }
+
+        // Quote of the Day
+        const quotes = [
+            "Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.",
+            "To keep the body in good health is a duty... otherwise we shall not be able to keep our mind strong and clear.",
+            "The greatest medicine of all is teaching people how not to need it."
+        ];
+        const quoteEl = document.getElementById('quote-of-the-day');
+        if(quoteEl) {
+            quoteEl.textContent = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+        }
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+        const sectionsToReveal = document.querySelectorAll('.reveal-on-scroll');
+        sectionsToReveal.forEach(section => { observer.observe(section); });
+
+        // Particles.js Initialization
+        particlesJS('particles-js', {
+          "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#34D399" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": false }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#6EE7B7", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false } },
+          "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } } },
+          "retina_detect": true
+        });
+    });
+    </script>
+</body>
+</html>
+
+
