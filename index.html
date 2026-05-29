@@ -1,144 +1,222 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AyurWell - Your Guide to Ayurvedic Wellness</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F0FFF4;
-        }
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
-        }
-        .quiz-option:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .hero-gradient {
-            background: linear-gradient(180deg, #F0FFF4 0%, #E6FFFA 100%);
-            position: relative;
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-scroll-left {
-            animation: scroll-left 40s linear infinite;
-        }
-        .slider-container {
-            overflow: hidden;
-            white-space: nowrap;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .slider-content {
-            display: inline-block;
-        }
-        .slider-content span {
-            margin: 0 2rem;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: #4B5563;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #1F2937;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .faq-question {
-            cursor: pointer;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-    </style>
-</head>
-<body class="text-gray-800">
 
-    <header class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="logo.jpg" alt="AyurWell Logo" class="h-12 w-12 rounded-full border-2 border-green-200">
-                <h1 class="text-3xl font-playfair">AyurWell</h1>
-            </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-green-200 hover:text-white">About</a>
-                <a href="#doshas" class="text-green-200 hover:text-white">The Doshas</a>
-                <a href="#shop" class="text-green-200 hover:text-white">Products</a>
-                <a href="#articles" class="text-green-200 hover:text-white">Articles</a>
-                <a href="login.html" class="text-green-200 hover:text-white">Login</a>
-                <a href="login.html" class="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition duration-300">Sign Up</a>
-            </div>
-        </nav>
-    </header>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold-l:#E8D08A;--gold-d:#8B6914;
+  --sage:#3D5A4A;--sage-l:#6B8F71;--cream:#FAF7F0;
+  --deep:#0D0A06;--terra:#B5522A;--muted:#7A6B52;
+  --r:16px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:var(--deep);color:#fff;overflow-x:hidden}
 
-    <main>
-        <section id="home" class="hero-gradient">
-            <div id="particles-js"></div>
-            <div class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center hero-content">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h2 class="text-4xl md:text-5xl font-bold text-green-900 leading-tight mb-4">Discover Your Inner Harmony.</h2>
-                    <div class="slider-container">
-                        <div class="slider-content animate-scroll-left">
-                            <span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span><span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span>
-                        </div>
-                    </div>
-                    <p class="text-lg text-gray-700 mb-8">Ayurveda teaches that balance is the key to wellness. Find your unique mind-body constitution by taking our curated 10-question quiz to reveal your dominant dosha.</p>
-                    <button id="start-quiz-btn" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">Find Your Dosha</button>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                     <img src="main.png" alt="Ayurvedic Wellness" class="w-full max-w-lg">
-                </div>
-            </div>
-        </section>
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(13,10,6,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.15)}
+.logo{font-size:1.5rem;font-weight:700;letter-spacing:-.5px;color:#fff}.logo span{color:var(--gold)}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:.2s;font-weight:500}
+nav a:hover{color:var(--gold)}
+.nav-btns{display:flex;gap:.6rem}
+.nb1{padding:.45rem 1.1rem;border:1.5px solid rgba(201,168,76,.5);background:transparent;color:var(--gold);border-radius:30px;cursor:pointer;font-size:.82rem;font-weight:600;transition:.2s}
+.nb1:hover{background:var(--gold);color:#000}
+.nb2{padding:.45rem 1.1rem;background:var(--sage);color:#fff;border:none;border-radius:30px;cursor:pointer;font-size:.82rem;font-weight:600;transition:.2s}
+.nb2:hover{background:var(--sage-l)}
+
+/* HERO — DNA HELIX BG */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 3rem}
+#helixCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero-tag{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:var(--gold-l);padding:.3rem 1rem;border-radius:30px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;color:#fff}
+.hero h1 em{color:var(--gold);font-style:italic;font-weight:700}
+.hero p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:2rem;max-width:460px}
+.hero-ctas{display:flex;gap:1rem}
+.cta1{padding:.85rem 2rem;background:var(--gold);color:#000;border:none;border-radius:40px;cursor:pointer;font-size:.95rem;font-weight:700;transition:.3s}
+.cta1:hover{background:var(--gold-l);transform:translateY(-2px)}
+.cta2{padding:.85rem 2rem;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);border-radius:40px;cursor:pointer;font-size:.95rem;font-weight:600;transition:.3s}
+.cta2:hover{border-color:var(--gold);color:var(--gold)}
+
+/* MARQUEE */
+.strip{background:var(--sage);padding:.55rem 0;overflow:hidden}
+.strip-inner{display:flex;gap:2rem;white-space:nowrap;animation:mq 20s linear infinite;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.strip-inner span{color:var(--gold-l);margin:0 .5rem}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* TORUS SECTION */
+.torus-section{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:90vh;align-items:center}
+.torus-left{padding:5rem 3rem 5rem 4rem}
+.torus-left .sec-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:.8rem}
+.torus-left h2{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:1rem;color:#fff}
+.torus-left p{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:2rem}
+.chakra-list{display:flex;flex-direction:column;gap:.75rem}
+.chakra-item{display:flex;align-items:center;gap:.9rem;padding:.7rem 1rem;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:.2s;cursor:default}
+.chakra-item:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.2)}
+.chakra-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.chakra-item span{font-size:.85rem;color:rgba(255,255,255,.75);font-weight:500}
+.chakra-item small{font-size:.75rem;color:rgba(255,255,255,.35);margin-left:auto}
+.torus-right{position:relative;height:90vh;overflow:hidden}
+#torusCanvas{width:100%;height:100%;display:block}
+
+/* DOSHAS */
+.doshas{padding:5rem 3rem;background:rgba(255,255,255,.02)}
+.sec-center{text-align:center;margin-bottom:3rem}
+.sec-center .sec-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:.6rem}
+.sec-center h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#fff;margin-bottom:.8rem}
+.sec-center p{color:rgba(255,255,255,.5);font-size:.95rem;max-width:480px;margin:0 auto;line-height:1.8}
+.doshas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.dosha-card{border-radius:var(--r);padding:2rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);transition:.35s;cursor:pointer;position:relative;overflow:hidden}
+.dosha-card::before{content:'';position:absolute;inset:0;opacity:0;transition:.3s;border-radius:var(--r)}
+.dosha-card:hover{transform:translateY(-6px)}
+.dosha-card:hover::before{opacity:1}
+.dv::before{background:radial-gradient(circle at 50% 0%,rgba(147,196,216,.08),transparent 60%)}
+.dp::before{background:radial-gradient(circle at 50% 0%,rgba(245,163,112,.08),transparent 60%)}
+.dk::before{background:radial-gradient(circle at 50% 0%,rgba(133,191,133,.08),transparent 60%)}
+.dosha-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.dosha-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:#fff}
+.dosha-card p{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:1rem}
+.traits{display:flex;flex-wrap:wrap;gap:.4rem}
+.trait{font-size:.72rem;padding:.2rem .6rem;border-radius:20px;font-weight:600}
+.tv{background:rgba(147,196,216,.15);color:#93C4D8}
+.tp{background:rgba(232,168,112,.15);color:#F5A370}
+.tk{background:rgba(133,191,133,.15);color:#85BF85}
+
+/* HEX SHOP — Crystal HexGrid */
+.hexshop{padding:5rem 3rem;background:#070B0F}
+.hex-scene{position:relative;height:480px;margin-top:3rem;overflow:hidden}
+.hex-grid{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-items:center;position:absolute;inset:0;padding:2rem}
+.hexcell{clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.35s;position:relative;flex-shrink:0}
+.hexcell:hover{transform:scale(1.12) translateY(-4px);z-index:10}
+.hexcell .hc-icon{font-size:1.6rem;line-height:1}
+.hexcell .hc-name{font-size:.62rem;font-weight:700;margin-top:4px;text-align:center;line-height:1.2}
+.hexcell .hc-price{font-size:.58rem;opacity:.7;margin-top:2px}
+
+/* NOTIFICATION */
+.notif-section{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;background:rgba(255,255,255,.015)}
+.notif-panel{background:#111610;border-radius:var(--r);padding:1.8rem;border:1px solid rgba(201,168,76,.15)}
+.notif-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.notif-hdr h4{font-size:.95rem;font-weight:700;color:#fff}
+.notif-badge{background:var(--terra);color:#fff;border-radius:8px;font-size:.65rem;padding:.15rem .5rem;font-weight:700}
+.notif-tabs{display:flex;gap:.4rem;margin-bottom:1.2rem}
+.ntab{padding:.35rem .85rem;border-radius:20px;font-size:.75rem;font-weight:600;cursor:pointer;border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);background:transparent;font-family:inherit;transition:.2s}
+.ntab.on{background:var(--sage);color:#fff;border-color:var(--sage)}
+.nitem{display:flex;gap:.9rem;padding:.85rem;border-radius:10px;margin-bottom:.6rem;background:rgba(255,255,255,.03);border-left:3px solid transparent;transition:.2s}
+.nitem:hover{background:rgba(255,255,255,.05)}
+.nitem.unread{background:rgba(201,168,76,.06);border-left-color:var(--gold)}
+.nicon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.ni-r{background:rgba(61,90,74,.3)}.ni-p{background:rgba(201,168,76,.2)}.ni-h{background:rgba(181,82,42,.25)}
+.ntext h5{font-size:.82rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.ntext p{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.5}
+.ntime{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:.25rem}
+.toggles{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.07)}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.trow-label{font-size:.8rem;color:rgba(255,255,255,.65)}
+.trow-label small{display:block;font-size:.7rem;color:rgba(255,255,255,.3)}
+.tog{position:relative;width:38px;height:22px;cursor:pointer}
+.tog input{opacity:0;width:0;height:0}
+.ts{position:absolute;inset:0;background:rgba(255,255,255,.15);border-radius:22px;transition:.3s}
+.ts:before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.tog input:checked+.ts{background:var(--sage)}
+.tog input:checked+.ts:before{transform:translateX(16px)}
+
+/* PAYMENT */
+.pay-section{padding:5rem 3rem;background:linear-gradient(135deg,#0E1A12 0%,#060D08 100%)}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:860px;margin:3rem auto 0}
+.pay-feats{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+.pf{display:flex;align-items:center;gap:.9rem;font-size:.88rem;color:rgba(255,255,255,.65)}
+.pf-ic{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.pay-card{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border-radius:var(--r);padding:2rem;border:1px solid rgba(255,255,255,.1)}
+.pay-card h4{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.2rem}
+.pm-tabs{display:flex;gap:.4rem;margin-bottom:1.1rem}
+.pm{padding:.38rem .85rem;border-radius:6px;background:rgba(255,255,255,.08);border:1.5px solid transparent;font-size:.75rem;cursor:pointer;color:rgba(255,255,255,.7);font-family:inherit;font-weight:600;transition:.2s}
+.pm.on,.pm:hover{border-color:var(--gold-l);background:rgba(201,168,76,.15);color:var(--gold-l)}
+.prow{margin-bottom:.85rem}
+.prow label{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.35rem}
+.pi{width:100%;padding:.7rem .9rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-size:.88rem;font-family:inherit;outline:none;transition:.2s}
+.pi:focus{border-color:rgba(201,168,76,.6);background:rgba(255,255,255,.12)}
+.pi::placeholder{color:rgba(255,255,255,.3)}
+.pr2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.pbtn{width:100%;padding:.85rem;background:var(--gold);color:#000;border:none;border-radius:10px;font-size:.92rem;font-weight:700;font-family:inherit;cursor:pointer;transition:.25s;margin-top:.4rem}
+.pbtn:hover{background:var(--gold-l);transform:translateY(-1px)}
+.psec{display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.7rem}
+
+/* TESTIMONIALS */
+.testis{padding:5rem 3rem;background:#080C0A}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.tcard{background:rgba(255,255,255,.03);border-radius:var(--r);padding:1.8rem;border:1px solid rgba(255,255,255,.07);transition:.3s}
+.tcard:hover{border-color:rgba(201,168,76,.2);transform:translateY(-4px)}
+.tstars{color:var(--gold);font-size:.95rem;margin-bottom:.9rem;letter-spacing:.08em}
+.tquote{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:1.2rem}
+.tauthor{display:flex;align-items:center;gap:.7rem}
+.tav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:#fff;flex-shrink:0}
+.tname{font-size:.85rem;font-weight:600;color:#fff}
+.tdesc{font-size:.72rem;color:rgba(255,255,255,.4)}
+
+/* FOOTER */
+footer{background:#050704;padding:3.5rem 3rem 2rem;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+.flogo{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:.4rem}.flogo span{color:var(--gold)}
+footer p{font-size:.82rem;color:rgba(255,255,255,.3);margin-bottom:1.8rem}
+.flinks{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem}
+.flinks a{color:rgba(255,255,255,.35);text-decoration:none;font-size:.82rem;transition:.2s}
+.flinks a:hover{color:var(--gold)}
+.fbot{font-size:.74rem;color:rgba(255,255,255,.2);padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.05)}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.8rem;right:1.8rem;background:var(--sage);color:#fff;padding:.85rem 1.4rem;border-radius:12px;font-size:.85rem;z-index:9999;transform:translateY(80px);opacity:0;transition:.35s;box-shadow:0 8px 30px rgba(0,0,0,.4);pointer-events:none;max-width:280px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* CART */
+.cart-btn{position:relative;background:var(--gold);color:#000;border:none;border-radius:30px;padding:.45rem 1.1rem;cursor:pointer;font-size:.82rem;font-weight:700;transition:.2s}
+.cart-btn:hover{background:var(--gold-l)}
+.cc{position:absolute;top:-5px;right:-5px;background:var(--terra);color:#fff;width:17px;height:17px;border-radius:50%;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(32px);transition:.65s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:760px){
+  nav ul,.nav-btns .nb1{display:none}
+  nav{padding:1rem 1.2rem}
+  .hero{padding:0 1.5rem;min-height:95vh}
+  .torus-section,.doshas-grid,.notif-section,.pay-grid,.tgrid{grid-template-columns:1fr}
+  .torus-right{height:360px}
+  section,div[class$="section"],.doshas,.hexshop,.testis{padding:4rem 1.5rem}
+  .torus-left{padding:3rem 1.5rem}
+}
+</style>
+
+<h2 class="sr-only">AyurWell — Ayurvedic wellness website with 3D animations</h2>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Ayur<span>Well</span></div>
+  <ul>
+    <li><a href="#doshas">Doshas</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#notify">Reminders</a></li>
+    <li><a href="#pay">Checkout</a></li>
+  </ul>
+  <div class="nav-btns">
+    <button class="nb1" onclick="toast('Welcome back 🌿')">Sign In</button>
+    <button class="cart-btn" onclick="toast('Cart is ready ✨')">🛒 Cart <span class="cc" id="cc">0</span></button>
+  </div>
+</nav>
+
+<!-- HERO: DNA HELIX BG -->
+<section class="hero">
+  <canvas id="helixCanvas"></canvas>
+  <div class="hero-content rv">
+    <div class="hero-tag">✦ 5000 Years of Ancient Wisdom</div>
+    <h1>Discover Your<br><em>Inner Balance</em><br>with Ayurveda</h1>
+    <p>Rooted in ancient science, tailored to your unique constitution. Find your dosha, get personalized remedies, and shop authentic herbs.</p>
+    <div class="hero-ctas">
+      <button class="cta1" onclick="toast('Starting your dosha quiz 🌿')">Find Your Dosha →</button>
+      <button class="cta2" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore Shop</button>
+    </div>
+  </div>
+</section>
 
 <!-- MARQUEE -->
 <div class="strip">
@@ -168,13 +246,12 @@
   </div>
 </section>
 
-<!-- DOSHAS + QUIZ MODAL -->
+<!-- DOSHAS -->
 <section class="doshas rv">
   <div class="sec-center">
     <div class="sec-label">The Three Energies</div>
     <h2>Understanding the Doshas</h2>
-    <p>Your unique mind-body constitution — discover yours through our curated quiz.</p>
-    <button class="cta1" style="margin-top:1.5rem;display:inline-block" onclick="openQuiz()">🌿 Start Dosha Quiz →</button>
+    <p>Your unique mind-body constitution — discover yours through our curated 25-question quiz.</p>
   </div>
   <div class="doshas-grid">
     <div class="dosha-card dv rv" style="transition-delay:.1s">
@@ -198,15 +275,6 @@
   </div>
 </section>
 
-<!-- QUIZ MODAL -->
-<div id="quizModal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem">
-<div id="quizBox" style="background:#111810;border:1px solid rgba(201,168,76,.2);border-radius:20px;max-width:560px;width:100%;padding:2.2rem;position:relative;max-height:90vh;overflow-y:auto">
-  <button onclick="closeQuiz()" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.1);border:none;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">✕</button>
-  <div id="quizProgress" style="height:4px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:1.5rem;overflow:hidden"><div id="quizBar" style="height:100%;background:var(--gold);border-radius:4px;transition:.4s;width:0%"></div></div>
-  <div id="quizInner"></div>
-</div>
-</div>
-
 <!-- CRYSTAL HEX SHOP -->
 <section class="hexshop rv" id="shop">
   <div class="sec-center">
@@ -222,57 +290,6 @@
 <!-- NOTIFICATIONS -->
 <section class="notif-section" id="notify">
   <div class="rv">
-    <!-- Ayurvedic illustration top -->
-    <div style="margin-bottom:1.8rem;display:inline-block">
-      <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 4px 24px rgba(201,168,76,.25))">
-        <!-- Mandala outer ring -->
-        <circle cx="90" cy="90" r="82" stroke="rgba(201,168,76,.18)" stroke-width="1.5" fill="none"/>
-        <circle cx="90" cy="90" r="70" stroke="rgba(201,168,76,.1)" stroke-width="1" fill="none"/>
-        <!-- Lotus petals -->
-        <g opacity="0.7">
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.5)" transform="rotate(0 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.45)" transform="rotate(45 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.4)" transform="rotate(90 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.45)" transform="rotate(135 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.5)" transform="rotate(180 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.45)" transform="rotate(225 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.4)" transform="rotate(270 90 90)"/>
-          <ellipse cx="90" cy="38" rx="8" ry="20" fill="rgba(61,90,74,.45)" transform="rotate(315 90 90)"/>
-        </g>
-        <!-- Inner lotus petals smaller -->
-        <g opacity="0.85">
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.4)" transform="rotate(0 90 90)"/>
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.35)" transform="rotate(60 90 90)"/>
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.4)" transform="rotate(120 90 90)"/>
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.35)" transform="rotate(180 90 90)"/>
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.4)" transform="rotate(240 90 90)"/>
-          <ellipse cx="90" cy="58" rx="6" ry="15" fill="rgba(201,168,76,.35)" transform="rotate(300 90 90)"/>
-        </g>
-        <!-- Center circle -->
-        <circle cx="90" cy="90" r="22" fill="rgba(201,168,76,.12)" stroke="rgba(201,168,76,.4)" stroke-width="1.5"/>
-        <circle cx="90" cy="90" r="14" fill="rgba(201,168,76,.2)"/>
-        <!-- OM symbol stand-in dots -->
-        <circle cx="90" cy="90" r="5" fill="rgba(201,168,76,.9)"/>
-        <circle cx="90" cy="90" r="2.5" fill="#fff" opacity="0.6"/>
-        <!-- Decorative dots on outer ring -->
-        <circle cx="90" cy="8" r="3" fill="rgba(201,168,76,.6)"/>
-        <circle cx="90" cy="172" r="3" fill="rgba(201,168,76,.6)"/>
-        <circle cx="8" cy="90" r="3" fill="rgba(201,168,76,.6)"/>
-        <circle cx="172" cy="90" r="3" fill="rgba(201,168,76,.6)"/>
-        <circle cx="33.5" cy="33.5" r="2.5" fill="rgba(201,168,76,.4)"/>
-        <circle cx="146.5" cy="33.5" r="2.5" fill="rgba(201,168,76,.4)"/>
-        <circle cx="33.5" cy="146.5" r="2.5" fill="rgba(201,168,76,.4)"/>
-        <circle cx="146.5" cy="146.5" r="2.5" fill="rgba(201,168,76,.4)"/>
-        <!-- Herb sprig left -->
-        <path d="M52 110 Q45 95 50 80" stroke="rgba(107,143,113,.7)" stroke-width="1.5" fill="none"/>
-        <ellipse cx="45" cy="90" rx="6" ry="10" fill="rgba(107,143,113,.4)" transform="rotate(-30 45 90)"/>
-        <ellipse cx="50" cy="82" rx="5" ry="8" fill="rgba(107,143,113,.5)" transform="rotate(-15 50 82)"/>
-        <!-- Herb sprig right -->
-        <path d="M128 110 Q135 95 130 80" stroke="rgba(107,143,113,.7)" stroke-width="1.5" fill="none"/>
-        <ellipse cx="135" cy="90" rx="6" ry="10" fill="rgba(107,143,113,.4)" transform="rotate(30 135 90)"/>
-        <ellipse cx="130" cy="82" rx="5" ry="8" fill="rgba(107,143,113,.5)" transform="rotate(15 130 82)"/>
-      </svg>
-    </div>
     <div class="sec-label">Stay Aligned</div>
     <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:1rem">Smart Wellness<br>Reminder System</h2>
     <p style="color:rgba(255,255,255,.5);font-size:.92rem;line-height:1.85;margin-bottom:1.5rem">Never miss your herb intake, seasonal routine, or dosha check-in. AyurWell sends personalized reminders based on your constitution and the time of day.</p>
@@ -339,51 +356,15 @@
     <div class="pay-card rv" style="transition-delay:.15s">
       <h4>Complete Your Order</h4>
       <div class="pm-tabs">
-        <button class="pm on" onclick="pm(this,'card')">💳 Card</button>
-        <button class="pm" onclick="pm(this,'upi')">📱 UPI</button>
-        <button class="pm" onclick="pm(this,'bank')">🏦 Net Banking</button>
+        <button class="pm on" onclick="pm(this)">💳 Card</button>
+        <button class="pm" onclick="pm(this)">📱 UPI</button>
+        <button class="pm" onclick="pm(this)">🏦 Net Banking</button>
       </div>
-      <!-- Card Panel -->
-      <div id="pay-card-panel">
-        <div class="prow"><label>Cardholder Name</label><input class="pi" id="p-name" placeholder="Your full name"></div>
-        <div class="prow"><label>Card Number</label><input class="pi" id="p-num" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmt(this)"></div>
-        <div class="pr2">
-          <div class="prow"><label>Expiry</label><input class="pi" id="p-exp" placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)"></div>
-          <div class="prow"><label>CVV</label><input class="pi" id="p-cvv" placeholder="•••" maxlength="3" type="password"></div>
-        </div>
-      </div>
-      <!-- UPI Panel -->
-      <div id="pay-upi-panel" style="display:none">
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem">
-          <button class="pm on" onclick="selUpi(this,'gpay')">Google Pay</button>
-          <button class="pm" onclick="selUpi(this,'phonepe')">PhonePe</button>
-          <button class="pm" onclick="selUpi(this,'paytm')">Paytm</button>
-          <button class="pm" onclick="selUpi(this,'bhim')">BHIM</button>
-        </div>
-        <div class="prow"><label>UPI ID</label><input class="pi" id="p-upi" placeholder="yourname@upi"></div>
-        <div style="background:rgba(201,168,76,.08);border-radius:10px;padding:.85rem;margin-top:.6rem;font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6">You'll receive a payment request on your UPI app. Approve it to complete your order.</div>
-      </div>
-      <!-- Net Banking Panel -->
-      <div id="pay-bank-panel" style="display:none">
-        <div class="prow"><label>Select Your Bank</label>
-          <select class="pi" id="p-bank" style="cursor:pointer">
-            <option value="">— Choose bank —</option>
-            <option>State Bank of India (SBI)</option>
-            <option>HDFC Bank</option>
-            <option>ICICI Bank</option>
-            <option>Axis Bank</option>
-            <option>Kotak Mahindra Bank</option>
-            <option>Punjab National Bank</option>
-            <option>Bank of Baroda</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div style="background:rgba(201,168,76,.08);border-radius:10px;padding:.85rem;margin-top:.6rem;font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6">You'll be redirected to your bank's secure login page to authorize the payment.</div>
-      </div>
-      <!-- Order Summary -->
-      <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.85rem;margin:.8rem 0;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Order Total</span>
-        <span style="font-size:1.05rem;font-weight:700;color:var(--gold)">₹1,525</span>
+      <div class="prow"><label>Cardholder Name</label><input class="pi" placeholder="Your full name"></div>
+      <div class="prow"><label>Card Number</label><input class="pi" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmt(this)"></div>
+      <div class="pr2">
+        <div class="prow"><label>Expiry</label><input class="pi" placeholder="MM / YY" maxlength="7"></div>
+        <div class="prow"><label>CVV</label><input class="pi" placeholder="•••" maxlength="3" type="password"></div>
       </div>
       <button class="pbtn" onclick="pay()">🔒 Pay ₹1,525 Securely</button>
       <div class="psec">🛡 Powered by Razorpay · PCI DSS Compliant</div>
@@ -433,135 +414,13 @@ function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.c
 function addCart(n){cartN++;document.getElementById('cc').textContent=cartN;toast('Added '+n+' to cart 🛒')}
 function ntab(b,t){document.querySelectorAll('.ntab').forEach(function(x){x.classList.remove('on')});b.classList.add('on');document.querySelectorAll('.nitem').forEach(function(i){i.style.display=(t==='all'||i.dataset.type===t)?'flex':'none'})}
 function tog(cb,n){toast((cb.checked?'✓ Enabled: ':'✗ Disabled: ')+n)}
-
-/* LIGHT MODE */
-function toggleLM(){
-  document.body.classList.toggle('light');
-  var isLight=document.body.classList.contains('light');
-  document.getElementById('lmBtn').childNodes[0].textContent=isLight?'🌙 ':' ☀️ ';
-  localStorage.setItem('lm',isLight?'1':'0');
-}
-if(localStorage.getItem('lm')==='1'){document.body.classList.add('light');document.getElementById('lmBtn').childNodes[0].textContent='🌙 ';}
-
-/* PAYMENT */
-var curPayMode='card';
-function pm(b,mode){
-  document.querySelectorAll('.pm-tabs .pm').forEach(function(x){x.classList.remove('on')});
-  b.classList.add('on');
-  curPayMode=mode;
-  document.getElementById('pay-card-panel').style.display=mode==='card'?'block':'none';
-  document.getElementById('pay-upi-panel').style.display=mode==='upi'?'block':'none';
-  document.getElementById('pay-bank-panel').style.display=mode==='bank'?'block':'none';
-}
-function selUpi(b,m){document.querySelectorAll('#pay-upi-panel .pm').forEach(function(x){x.classList.remove('on')});b.classList.add('on')}
+function pm(b){document.querySelectorAll('.pm').forEach(function(x){x.classList.remove('on')});b.classList.add('on')}
 function fmt(i){var v=i.value.replace(/\D/g,'').substring(0,16);i.value=v.replace(/(.{4})/g,'$1 ').trim()}
-function fmtExp(i){var v=i.value.replace(/\D/g,'').substring(0,4);if(v.length>=2)v=v.substring(0,2)+' / '+v.substring(2);i.value=v}
-function pay(){
-  var valid=true,msg='';
-  if(curPayMode==='card'){
-    var name=document.getElementById('p-name').value.trim();
-    var num=document.getElementById('p-num').value.replace(/\s/g,'');
-    var exp=document.getElementById('p-exp').value.trim();
-    var cvv=document.getElementById('p-cvv').value.trim();
-    if(!name){msg='Please enter cardholder name';valid=false;}
-    else if(num.length<16){msg='Please enter a valid 16-digit card number';valid=false;}
-    else if(exp.length<7){msg='Please enter a valid expiry date';valid=false;}
-    else if(cvv.length<3){msg='Please enter a valid CVV';valid=false;}
-  } else if(curPayMode==='upi'){
-    var upi=document.getElementById('p-upi').value.trim();
-    if(!upi||!upi.includes('@')){msg='Please enter a valid UPI ID (e.g. name@upi)';valid=false;}
-  } else if(curPayMode==='bank'){
-    var bank=document.getElementById('p-bank').value;
-    if(!bank){msg='Please select your bank';valid=false;}
-  }
-  if(!valid){toast('⚠️ '+msg);return;}
-  var btn=document.querySelector('.pbtn');
-  btn.textContent='Processing...';btn.disabled=true;
-  setTimeout(function(){
-    btn.textContent='🔒 Pay ₹1,525 Securely';btn.disabled=false;
-    toast('✅ Payment ₹1,525 confirmed! Order placed 🌿');
-    addCart('Order');
-  },2200);
-}
+function pay(){toast('🔒 Processing securely...');setTimeout(function(){toast('✅ Payment ₹1,525 confirmed! 🌿')},2200)}
 
 /* SCROLL REVEAL */
 function chkRv(){document.querySelectorAll('.rv').forEach(function(e){if(e.getBoundingClientRect().top<window.innerHeight-60)e.classList.add('in')})}
 window.addEventListener('scroll',chkRv,{passive:true});setTimeout(chkRv,100);
-
-/* ===================== DOSHA QUIZ ===================== */
-var quizQs=[
-  {q:"How would you describe your body frame?",opts:[{t:"Thin, light, hard to gain weight",d:"V"},{t:"Medium, muscular build",d:"P"},{t:"Heavier, tends to gain weight easily",d:"K"}]},
-  {q:"How is your skin usually?",opts:[{t:"Dry, rough, or cool to touch",d:"V"},{t:"Oily, warm, prone to redness/acne",d:"P"},{t:"Thick, smooth, pale or moist",d:"K"}]},
-  {q:"How would you describe your digestion?",opts:[{t:"Irregular — sometimes strong, sometimes weak",d:"V"},{t:"Strong — gets irritable if meals are skipped",d:"P"},{t:"Slow but steady — rarely very hungry",d:"K"}]},
-  {q:"How do you sleep?",opts:[{t:"Light sleeper, tend to wake up easily",d:"V"},{t:"Moderate — fall asleep well, wake refreshed",d:"P"},{t:"Heavy sleeper — love long sleep, hard to wake",d:"K"}]},
-  {q:"How do you handle stress?",opts:[{t:"Tend to feel anxious or worried",d:"V"},{t:"Become irritable or angry",d:"P"},{t:"Withdraw and become quiet",d:"K"}]},
-  {q:"How is your energy level through the day?",opts:[{t:"Variable — bursts of energy then fatigue",d:"V"},{t:"Consistent and purposeful",d:"P"},{t:"Steady and sustained but low drive",d:"K"}]},
-  {q:"How do you make decisions?",opts:[{t:"Quickly but may change mind often",d:"V"},{t:"Decisively with confidence",d:"P"},{t:"Slowly and carefully",d:"K"}]},
-  {q:"What weather do you prefer?",opts:[{t:"Warm and humid",d:"V"},{t:"Cool and well-ventilated",d:"P"},{t:"Dry and warm",d:"K"}]},
-];
-var quizIdx=0,scores={V:0,P:0,K:0};
-function openQuiz(){
-  quizIdx=0;scores={V:0,P:0,K:0};
-  document.getElementById('quizModal').style.display='flex';
-  renderQ();
-}
-function closeQuiz(){document.getElementById('quizModal').style.display='none'}
-document.getElementById('quizModal').addEventListener('click',function(e){if(e.target===this)closeQuiz()});
-function renderQ(){
-  var q=quizQs[quizIdx];
-  var pct=Math.round((quizIdx/quizQs.length)*100);
-  document.getElementById('quizBar').style.width=pct+'%';
-  var html='<div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase">Question '+(quizIdx+1)+' of '+quizQs.length+'</div>';
-  html+='<h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:1.5rem;line-height:1.45">'+q.q+'</h3>';
-  html+='<div style="display:flex;flex-direction:column;gap:.65rem">';
-  q.opts.forEach(function(o,i){
-    html+='<button onclick="answerQ(\''+o.d+'\')" style="text-align:left;padding:1rem 1.2rem;border-radius:12px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);color:rgba(255,255,255,.85);font-size:.9rem;cursor:pointer;font-family:inherit;transition:.2s;line-height:1.5" onmouseover="this.style.background=\'rgba(201,168,76,.12)\';this.style.borderColor=\'rgba(201,168,76,.4)\'" onmouseout="this.style.background=\'rgba(255,255,255,.05)\';this.style.borderColor=\'rgba(255,255,255,.1)\'">'+(i+1)+'. '+o.t+'</button>';
-  });
-  html+='</div>';
-  if(quizIdx>0)html+='<button onclick="prevQ()" style="margin-top:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:.8rem;cursor:pointer;font-family:inherit">← Back</button>';
-  document.getElementById('quizInner').innerHTML=html;
-}
-function answerQ(d){
-  scores[d]++;
-  quizIdx++;
-  if(quizIdx>=quizQs.length){showResult();return;}
-  renderQ();
-}
-function prevQ(){if(quizIdx>0){quizIdx--;renderQ();}}
-function showResult(){
-  document.getElementById('quizBar').style.width='100%';
-  var top=Object.keys(scores).sort(function(a,b){return scores[b]-scores[a]})[0];
-  var info={
-    V:{name:'Vata',icon:'💨',color:'#93C4D8',desc:'You are predominantly Vata — the energy of movement. You are creative, quick-minded, and enthusiastic, but may struggle with anxiety and irregular routines.',herbs:'Ashwagandha, Shatavari, Sesame Oil, Warm Milk with Nutmeg',tips:'Maintain regular meals & sleep. Favor warm, nourishing foods. Oil massage (Abhyanga) daily.'},
-    P:{name:'Pitta',icon:'🔥',color:'#F5A370',desc:'You are predominantly Pitta — the energy of transformation. You are sharp, focused, and driven, but can be prone to irritability and inflammation.',herbs:'Brahmi, Neem, Amla, Coriander, Coconut Oil',tips:'Avoid spicy & fermented foods. Spend time in nature. Stay cool and practice patience.'},
-    K:{name:'Kapha',icon:'🌊',color:'#85BF85',desc:'You are predominantly Kapha — the energy of structure. You are calm, caring, and grounded, but may struggle with lethargy and attachment.',herbs:'Triphala, Trikatu, Ginger, Honey, Turmeric',tips:'Stay active & energized. Eat light, warm foods. Embrace change and variety in routines.'}
-  };
-  var r=info[top];
-  var total=scores.V+scores.P+scores.K;
-  var html='<div style="text-align:center;padding:.5rem 0 1.5rem">';
-  html+='<div style="font-size:3.5rem;margin-bottom:.8rem">'+r.icon+'</div>';
-  html+='<div style="font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem">Your Primary Dosha</div>';
-  html+='<h2 style="font-size:2rem;font-weight:800;color:'+r.color+';margin-bottom:.8rem">'+r.name+'</h2>';
-  html+='<p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:1.5rem;max-width:420px;margin-left:auto;margin-right:auto">'+r.desc+'</p>';
-  // Score bar
-  html+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:1.5rem">';
-  [{d:'V',n:'Vata',c:'#93C4D8'},{d:'P',n:'Pitta',c:'#F5A370'},{d:'K',n:'Kapha',c:'#85BF85'}].forEach(function(x){
-    var pct=Math.round(scores[x.d]/total*100);
-    html+='<div><div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.3rem">'+x.n+'</div><div style="height:6px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+x.c+';border-radius:6px;transition:.8s"></div></div><div style="font-size:.72rem;color:'+x.c+';margin-top:.2rem">'+pct+'%</div></div>';
-  });
-  html+='</div>';
-  html+='<div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;text-align:left;margin-bottom:1rem">';
-  html+='<div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:.5rem">Recommended Herbs</div>';
-  html+='<div style="font-size:.85rem;color:rgba(255,255,255,.7)">'+r.herbs+'</div></div>';
-  html+='<div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;text-align:left;margin-bottom:1.5rem">';
-  html+='<div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:.5rem">Lifestyle Tips</div>';
-  html+='<div style="font-size:.85rem;color:rgba(255,255,255,.7)">'+r.tips+'</div></div>';
-  html+='<div style="display:flex;gap:.75rem;justify-content:center">';
-  html+='<button onclick="closeQuiz()" style="padding:.75rem 1.8rem;background:var(--gold);color:#000;border:none;border-radius:30px;cursor:pointer;font-size:.9rem;font-weight:700;font-family:inherit">Explore Herbs →</button>';
-  html+='<button onclick="openQuiz()" style="padding:.75rem 1.5rem;background:transparent;color:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.2);border-radius:30px;cursor:pointer;font-size:.88rem;font-family:inherit">Retake Quiz</button>';
-  html+='</div></div>';
-  document.getElementById('quizInner').innerHTML=html;
-}
 
 /* ===================== HELIX BG ===================== */
 (function(){
@@ -680,15 +539,15 @@ function showResult(){
 /* ===================== HEX GRID SHOP ===================== */
 (function(){
   var products=[
-    {icon:'🌿',name:'Ashwagandha',price:'₹450',color:'rgba(61,90,74,.25)',border:'rgba(107,143,113,.5)',size:145,delay:'0s'},
-    {icon:'🟡',name:'Turmeric',price:'₹300',color:'rgba(201,168,76,.2)',border:'rgba(201,168,76,.5)',size:135,delay:'.1s'},
-    {icon:'🍵',name:'Triphala',price:'₹375',color:'rgba(61,90,74,.2)',border:'rgba(93,202,165,.4)',size:140,delay:'.2s'},
-    {icon:'🫙',name:'Brahmi Oil',price:'₹400',color:'rgba(127,119,221,.18)',border:'rgba(127,119,221,.4)',size:135,delay:'.3s'},
-    {icon:'🌸',name:'Shatavari',price:'₹520',color:'rgba(212,83,126,.15)',border:'rgba(212,83,126,.4)',size:150,delay:'.4s'},
-    {icon:'🌰',name:'Triphala+',price:'₹480',color:'rgba(181,82,42,.18)',border:'rgba(181,82,42,.4)',size:130,delay:'.5s'},
-    {icon:'💚',name:'Moringa',price:'₹350',color:'rgba(99,153,34,.18)',border:'rgba(99,153,34,.4)',size:140,delay:'.6s'},
-    {icon:'🌾',name:'Shankhpushpi',price:'₹430',color:'rgba(55,138,221,.15)',border:'rgba(55,138,221,.4)',size:132,delay:'.7s'},
-    {icon:'⭐',name:'Guduchi',price:'₹390',color:'rgba(186,117,23,.2)',border:'rgba(239,159,39,.4)',size:138,delay:'.8s'},
+    {icon:'🌿',name:'Ashwagandha',price:'₹450',color:'rgba(61,90,74,.25)',border:'rgba(107,143,113,.5)',size:110,delay:'0s'},
+    {icon:'🟡',name:'Turmeric',price:'₹300',color:'rgba(201,168,76,.2)',border:'rgba(201,168,76,.5)',size:100,delay:'.1s'},
+    {icon:'🍵',name:'Triphala',price:'₹375',color:'rgba(61,90,74,.2)',border:'rgba(93,202,165,.4)',size:105,delay:'.2s'},
+    {icon:'🫙',name:'Brahmi Oil',price:'₹400',color:'rgba(127,119,221,.18)',border:'rgba(127,119,221,.4)',size:100,delay:'.3s'},
+    {icon:'🌸',name:'Shatavari',price:'₹520',color:'rgba(212,83,126,.15)',border:'rgba(212,83,126,.4)',size:110,delay:'.4s'},
+    {icon:'🌰',name:'Triphala+',price:'₹480',color:'rgba(181,82,42,.18)',border:'rgba(181,82,42,.4)',size:95,delay:'.5s'},
+    {icon:'💚',name:'Moringa',price:'₹350',color:'rgba(99,153,34,.18)',border:'rgba(99,153,34,.4)',size:105,delay:'.6s'},
+    {icon:'🌾',name:'Shankhpushpi',price:'₹430',color:'rgba(55,138,221,.15)',border:'rgba(55,138,221,.4)',size:98,delay:'.7s'},
+    {icon:'⭐',name:'Guduchi',price:'₹390',color:'rgba(186,117,23,.2)',border:'rgba(239,159,39,.4)',size:102,delay:'.8s'},
   ];
   var grid=document.getElementById('hexGrid');
   products.forEach(function(p){
