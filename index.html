@@ -1,295 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyurWell - Your Guide to Ayurvedic Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0FFF4;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .quiz-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, #F0FFF4 0%, #E6FFFA 100%);
+            position: relative;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+        }
+        .slider-container {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slider-content {
+            display: inline-block;
+        }
+        .slider-content span {
+            margin: 0 2rem;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #4B5563;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #1F2937;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --gold:#C9A84C;--gold-l:#E8D08A;--gold-d:#8B6914;
-  --sage:#3D5A4A;--sage-l:#6B8F71;--cream:#FAF7F0;
-  --deep:#0D0A06;--terra:#B5522A;--muted:#7A6B52;
-  --r:16px;
-  --bg:var(--deep);--fg:#fff;--fg2:rgba(255,255,255,.55);--fg3:rgba(255,255,255,.35);
-  --card-bg:rgba(255,255,255,.03);--card-border:rgba(255,255,255,.07);
-  --nav-bg:rgba(13,10,6,.85);--input-bg:rgba(255,255,255,.08);--input-border:rgba(255,255,255,.15);
-}
-body.light{
-  --bg:#F4EFE6;--fg:#1A1208;--fg2:rgba(30,20,5,.65);--fg3:rgba(30,20,5,.4);
-  --card-bg:rgba(255,255,255,.75);--card-border:rgba(0,0,0,.1);
-  --nav-bg:rgba(244,239,230,.92);--input-bg:rgba(0,0,0,.06);--input-border:rgba(0,0,0,.18);
-  --deep:#F4EFE6;--terra:#C0591E;
-}
-html{scroll-behavior:smooth;overflow-x:hidden;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:var(--bg);color:var(--fg);overflow-x:hidden;transition:background .4s,color .4s}
+    <header class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.jpg" alt="AyurWell Logo" class="h-12 w-12 rounded-full border-2 border-green-200">
+                <h1 class="text-3xl font-playfair">AyurWell</h1>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-green-200 hover:text-white">About</a>
+                <a href="#doshas" class="text-green-200 hover:text-white">The Doshas</a>
+                <a href="#shop" class="text-green-200 hover:text-white">Products</a>
+                <a href="#articles" class="text-green-200 hover:text-white">Articles</a>
+                <a href="login.html" class="text-green-200 hover:text-white">Login</a>
+                <a href="login.html" class="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition duration-300">Sign Up</a>
+            </div>
+        </nav>
+    </header>
 
-/* LIGHT MODE TOGGLE */
-.lm-toggle{display:flex;align-items:center;gap:.45rem;cursor:pointer;padding:.38rem .7rem;border-radius:30px;border:1.5px solid rgba(201,168,76,.45);background:transparent;color:var(--gold);font-size:.8rem;font-weight:600;font-family:inherit;transition:.2s;white-space:nowrap}
-.lm-toggle:hover{background:rgba(201,168,76,.1)}
-.lm-knob{width:30px;height:17px;background:rgba(201,168,76,.25);border-radius:17px;position:relative;transition:.3s;border:1px solid rgba(201,168,76,.4)}
-.lm-knob::after{content:'';position:absolute;width:11px;height:11px;background:var(--gold);border-radius:50%;top:2px;left:2px;transition:.3s}
-body.light .lm-knob{background:rgba(201,168,76,.5)}
-body.light .lm-knob::after{left:15px}
-body.light nav{border-bottom-color:rgba(201,168,76,.25)}
-body.light nav a{color:rgba(30,20,5,.5)}
-body.light nav a:hover{color:var(--gold-d)}
-body.light .logo{color:var(--fg)}
-body.light .hero h1{color:var(--fg)}
-body.light .hero p{color:var(--fg2)}
-body.light .chakra-item{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08)}
-body.light .chakra-item span{color:rgba(30,20,5,.8)}
-body.light .torus-left h2{color:var(--fg)}
-body.light .torus-left p{color:var(--fg2)}
-body.light .sec-center h2,.body.light .notif-section h2{color:var(--fg)}
-body.light .sec-center p{color:var(--fg2)}
-body.light .dosha-card{background:var(--card-bg);border-color:var(--card-border);box-shadow:0 2px 16px rgba(0,0,0,.08)}
-body.light .dosha-card h3{color:var(--fg)}
-body.light .dosha-card p{color:var(--fg2)}
-body.light .hexshop{background:#EDE4D5}
-body.light .hc-name{color:rgba(30,20,5,.85)!important}
-body.light .notif-section{background:rgba(0,0,0,.03)}
-body.light .notif-panel{background:#fff;border-color:rgba(201,168,76,.2)}
-body.light .notif-hdr h4,.body.light .ntext h5{color:var(--fg)}
-body.light .nitem{background:rgba(0,0,0,.03)}
-body.light .nitem.unread{background:rgba(201,168,76,.08)}
-body.light .ntext h5{color:var(--fg)}
-body.light .ntext p{color:var(--fg2)}
-body.light .trow-label{color:rgba(30,20,5,.7)}
-body.light .pi{background:var(--input-bg);border-color:var(--input-border);color:var(--fg)}
-body.light .pi::placeholder{color:rgba(30,20,5,.35)}
-body.light .pay-card{background:rgba(255,255,255,.9);border-color:rgba(0,0,0,.1)}
-body.light .pay-card h4{color:var(--fg)}
-body.light .pf{color:rgba(30,20,5,.65)}
-body.light .pm{color:rgba(30,20,5,.6);background:rgba(0,0,0,.06)}
-body.light .pay-section{background:linear-gradient(135deg,#E8E0D0 0%,#D8D0BE 100%)}
-body.light .tcard{background:rgba(255,255,255,.8);border-color:rgba(0,0,0,.09)}
-body.light .tquote{color:rgba(30,20,5,.7)}
-body.light .tname{color:var(--fg)}
-body.light footer{background:#EAE3D5;border-top-color:rgba(0,0,0,.08)}
-body.light .flogo{color:var(--fg)}
-body.light footer p,.body.light .flinks a{color:rgba(30,20,5,.45)}
-body.light .flinks a:hover{color:var(--gold-d)}
-body.light .fbot{color:rgba(30,20,5,.3)}
-body.light .doshas{background:rgba(0,0,0,.04)}
-body.light .testis{background:#EAE2D4}
-body.light .strip{background:var(--sage)}
-body.light .ntab{border-color:rgba(0,0,0,.15);color:rgba(30,20,5,.5)}
-body.light .notif-section h2{color:var(--fg)!important}
-body.light .notif-section p{color:var(--fg2)!important}
-body.light .torus-section{background:var(--bg)}
-body.light .toggles{border-top-color:rgba(0,0,0,.08)}
-body.light .trow{border-bottom-color:rgba(0,0,0,.06)}
-body.light .ts{background:rgba(0,0,0,.15)}
-body.light #helixCanvas{opacity:.5}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(13,10,6,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.15)}
-.logo{font-size:1.5rem;font-weight:700;letter-spacing:-.5px;color:#fff}.logo span{color:var(--gold)}
-nav ul{display:flex;gap:2rem;list-style:none}
-nav a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:.2s;font-weight:500}
-nav a:hover{color:var(--gold)}
-.nav-btns{display:flex;gap:.6rem}
-.nb1{padding:.45rem 1.1rem;border:1.5px solid rgba(201,168,76,.5);background:transparent;color:var(--gold);border-radius:30px;cursor:pointer;font-size:.82rem;font-weight:600;transition:.2s}
-.nb1:hover{background:var(--gold);color:#000}
-.nb2{padding:.45rem 1.1rem;background:var(--sage);color:#fff;border:none;border-radius:30px;cursor:pointer;font-size:.82rem;font-weight:600;transition:.2s}
-.nb2:hover{background:var(--sage-l)}
-
-/* HERO — DNA HELIX BG */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 3rem}
-#helixCanvas{position:absolute;inset:0;width:100%;height:100%}
-.hero-content{position:relative;z-index:2;max-width:600px}
-.hero-tag{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:var(--gold-l);padding:.3rem 1rem;border-radius:30px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
-.hero h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;color:#fff}
-.hero h1 em{color:var(--gold);font-style:italic;font-weight:700}
-.hero p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:2rem;max-width:460px}
-.hero-ctas{display:flex;gap:1rem}
-.cta1{padding:.85rem 2rem;background:var(--gold);color:#000;border:none;border-radius:40px;cursor:pointer;font-size:.95rem;font-weight:700;transition:.3s}
-.cta1:hover{background:var(--gold-l);transform:translateY(-2px)}
-.cta2{padding:.85rem 2rem;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);border-radius:40px;cursor:pointer;font-size:.95rem;font-weight:600;transition:.3s}
-.cta2:hover{border-color:var(--gold);color:var(--gold)}
-
-/* MARQUEE */
-.strip{background:var(--sage);padding:.55rem 0;overflow:hidden}
-.strip-inner{display:flex;gap:2rem;white-space:nowrap;animation:mq 20s linear infinite;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.strip-inner span{color:var(--gold-l);margin:0 .5rem}
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* TORUS SECTION */
-.torus-section{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:90vh;align-items:center;position:relative;overflow:hidden}
-.torus-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,.06),transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(61,90,74,.12),transparent 50%);pointer-events:none}
-.torus-left{padding:5rem 3rem 5rem 4rem}
-.torus-left .sec-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:.8rem}
-.torus-left h2{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:1rem;color:#fff}
-.torus-left p{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:2rem}
-.chakra-list{display:flex;flex-direction:column;gap:.75rem}
-.chakra-item{display:flex;align-items:center;gap:.9rem;padding:.7rem 1rem;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:.2s;cursor:default}
-.chakra-item:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.2)}
-.chakra-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.chakra-item span{font-size:.85rem;color:rgba(255,255,255,.75);font-weight:500}
-.chakra-item small{font-size:.75rem;color:rgba(255,255,255,.35);margin-left:auto}
-.torus-right{position:relative;height:90vh;overflow:hidden}
-#torusCanvas{width:100%;height:100%;display:block}
-
-/* DOSHAS */
-.doshas{padding:5rem 3rem;background:rgba(255,255,255,.02);position:relative;overflow:hidden}
-.doshas::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07),transparent 55%);pointer-events:none}
-.sec-center{text-align:center;margin-bottom:3rem}
-.sec-center .sec-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:.6rem}
-.sec-center h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#fff;margin-bottom:.8rem}
-.sec-center p{color:rgba(255,255,255,.5);font-size:.95rem;max-width:480px;margin:0 auto;line-height:1.8}
-.doshas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.dosha-card{border-radius:var(--r);padding:2rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);transition:.35s;cursor:pointer;position:relative;overflow:hidden}
-.dosha-card::before{content:'';position:absolute;inset:0;opacity:0;transition:.3s;border-radius:var(--r)}
-.dosha-card:hover{transform:translateY(-6px)}
-.dosha-card:hover::before{opacity:1}
-.dv::before{background:radial-gradient(circle at 50% 0%,rgba(147,196,216,.08),transparent 60%)}
-.dp::before{background:radial-gradient(circle at 50% 0%,rgba(245,163,112,.08),transparent 60%)}
-.dk::before{background:radial-gradient(circle at 50% 0%,rgba(133,191,133,.08),transparent 60%)}
-.dosha-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
-.dosha-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:#fff}
-.dosha-card p{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:1rem}
-.traits{display:flex;flex-wrap:wrap;gap:.4rem}
-.trait{font-size:.72rem;padding:.2rem .6rem;border-radius:20px;font-weight:600}
-.tv{background:rgba(147,196,216,.15);color:#93C4D8}
-.tp{background:rgba(232,168,112,.15);color:#F5A370}
-.tk{background:rgba(133,191,133,.15);color:#85BF85}
-
-/* HEX SHOP — Crystal HexGrid */
-.hexshop{padding:5rem 3rem;background:#070B0F;position:relative;overflow:hidden}
-.hexshop::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(61,90,74,.18),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08),transparent 60%);pointer-events:none}
-.hex-scene{position:relative;height:600px;margin-top:3rem;overflow:hidden}
-.hex-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;position:absolute;inset:0;padding:2rem}
-.hexcell{clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.35s;position:relative;flex-shrink:0}
-.hexcell:hover{transform:scale(1.14) translateY(-6px);z-index:10}
-.hexcell .hc-icon{font-size:2.4rem;line-height:1}
-.hexcell .hc-name{font-size:.78rem;font-weight:700;margin-top:6px;text-align:center;line-height:1.2}
-.hexcell .hc-price{font-size:.72rem;opacity:.85;margin-top:3px;font-weight:600}
-
-/* NOTIFICATION */
-.notif-section{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;background:rgba(255,255,255,.015)}
-.notif-panel{background:#111610;border-radius:var(--r);padding:1.8rem;border:1px solid rgba(201,168,76,.15)}
-.notif-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
-.notif-hdr h4{font-size:.95rem;font-weight:700;color:#fff}
-.notif-badge{background:var(--terra);color:#fff;border-radius:8px;font-size:.65rem;padding:.15rem .5rem;font-weight:700}
-.notif-tabs{display:flex;gap:.4rem;margin-bottom:1.2rem}
-.ntab{padding:.35rem .85rem;border-radius:20px;font-size:.75rem;font-weight:600;cursor:pointer;border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);background:transparent;font-family:inherit;transition:.2s}
-.ntab.on{background:var(--sage);color:#fff;border-color:var(--sage)}
-.nitem{display:flex;gap:.9rem;padding:.85rem;border-radius:10px;margin-bottom:.6rem;background:rgba(255,255,255,.03);border-left:3px solid transparent;transition:.2s}
-.nitem:hover{background:rgba(255,255,255,.05)}
-.nitem.unread{background:rgba(201,168,76,.06);border-left-color:var(--gold)}
-.nicon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
-.ni-r{background:rgba(61,90,74,.3)}.ni-p{background:rgba(201,168,76,.2)}.ni-h{background:rgba(181,82,42,.25)}
-.ntext h5{font-size:.82rem;font-weight:600;color:#fff;margin-bottom:.2rem}
-.ntext p{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.5}
-.ntime{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:.25rem}
-.toggles{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.07)}
-.trow{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.trow-label{font-size:.8rem;color:rgba(255,255,255,.65)}
-.trow-label small{display:block;font-size:.7rem;color:rgba(255,255,255,.3)}
-.tog{position:relative;width:38px;height:22px;cursor:pointer}
-.tog input{opacity:0;width:0;height:0}
-.ts{position:absolute;inset:0;background:rgba(255,255,255,.15);border-radius:22px;transition:.3s}
-.ts:before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
-.tog input:checked+.ts{background:var(--sage)}
-.tog input:checked+.ts:before{transform:translateX(16px)}
-
-/* PAYMENT */
-.pay-section{padding:5rem 3rem;background:linear-gradient(135deg,#0E1A12 0%,#060D08 100%)}
-.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:860px;margin:3rem auto 0}
-.pay-feats{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
-.pf{display:flex;align-items:center;gap:.9rem;font-size:.88rem;color:rgba(255,255,255,.65)}
-.pf-ic{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.pay-card{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border-radius:var(--r);padding:2rem;border:1px solid rgba(255,255,255,.1)}
-.pay-card h4{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.2rem}
-.pm-tabs{display:flex;gap:.4rem;margin-bottom:1.1rem}
-.pm{padding:.38rem .85rem;border-radius:6px;background:rgba(255,255,255,.08);border:1.5px solid transparent;font-size:.75rem;cursor:pointer;color:rgba(255,255,255,.7);font-family:inherit;font-weight:600;transition:.2s}
-.pm.on,.pm:hover{border-color:var(--gold-l);background:rgba(201,168,76,.15);color:var(--gold-l)}
-.prow{margin-bottom:.85rem}
-.prow label{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.35rem}
-.pi{width:100%;padding:.7rem .9rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-size:.88rem;font-family:inherit;outline:none;transition:.2s}
-.pi:focus{border-color:rgba(201,168,76,.6);background:rgba(255,255,255,.12)}
-.pi::placeholder{color:rgba(255,255,255,.3)}
-.pr2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.pbtn{width:100%;padding:.85rem;background:var(--gold);color:#000;border:none;border-radius:10px;font-size:.92rem;font-weight:700;font-family:inherit;cursor:pointer;transition:.25s;margin-top:.4rem}
-.pbtn:hover{background:var(--gold-l);transform:translateY(-1px)}
-.psec{display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.7rem}
-
-/* TESTIMONIALS */
-.testis{padding:5rem 3rem;background:#080C0A;position:relative;overflow:hidden}
-.testis::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(61,90,74,.15),transparent 55%),radial-gradient(ellipse at 10% 50%,rgba(201,168,76,.05),transparent 40%);pointer-events:none}
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.tcard{background:rgba(255,255,255,.03);border-radius:var(--r);padding:1.8rem;border:1px solid rgba(255,255,255,.07);transition:.3s}
-.tcard:hover{border-color:rgba(201,168,76,.2);transform:translateY(-4px)}
-.tstars{color:var(--gold);font-size:.95rem;margin-bottom:.9rem;letter-spacing:.08em}
-.tquote{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:1.2rem}
-.tauthor{display:flex;align-items:center;gap:.7rem}
-.tav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:#fff;flex-shrink:0}
-.tname{font-size:.85rem;font-weight:600;color:#fff}
-.tdesc{font-size:.72rem;color:rgba(255,255,255,.4)}
-
-/* FOOTER */
-footer{background:#050704;padding:3.5rem 3rem 2rem;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
-.flogo{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:.4rem}.flogo span{color:var(--gold)}
-footer p{font-size:.82rem;color:rgba(255,255,255,.3);margin-bottom:1.8rem}
-.flinks{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem}
-.flinks a{color:rgba(255,255,255,.35);text-decoration:none;font-size:.82rem;transition:.2s}
-.flinks a:hover{color:var(--gold)}
-.fbot{font-size:.74rem;color:rgba(255,255,255,.2);padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.05)}
-
-/* TOAST */
-.toast{position:fixed;bottom:1.8rem;right:1.8rem;background:var(--sage);color:#fff;padding:.85rem 1.4rem;border-radius:12px;font-size:.85rem;z-index:9999;transform:translateY(80px);opacity:0;transition:.35s;box-shadow:0 8px 30px rgba(0,0,0,.4);pointer-events:none;max-width:280px}
-.toast.show{transform:translateY(0);opacity:1}
-
-/* CART */
-.cart-btn{position:relative;background:var(--gold);color:#000;border:none;border-radius:30px;padding:.45rem 1.1rem;cursor:pointer;font-size:.82rem;font-weight:700;transition:.2s}
-.cart-btn:hover{background:var(--gold-l)}
-.cc{position:absolute;top:-5px;right:-5px;background:var(--terra);color:#fff;width:17px;height:17px;border-radius:50%;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:800}
-
-/* SCROLL REVEAL */
-.rv{opacity:0;transform:translateY(32px);transition:.65s ease}
-.rv.in{opacity:1;transform:translateY(0)}
-
-@media(max-width:760px){
-  nav ul,.nav-btns .nb1{display:none}
-  nav{padding:1rem 1.2rem}
-  .hero{padding:0 1.5rem;min-height:95vh}
-  .torus-section,.doshas-grid,.notif-section,.pay-grid,.tgrid{grid-template-columns:1fr}
-  .torus-right{height:360px}
-  section,div[class$="section"],.doshas,.hexshop,.testis{padding:4rem 1.5rem}
-  .torus-left{padding:3rem 1.5rem}
-}
-</style>
-
-<h2 class="sr-only">AyurWell — Ayurvedic wellness website with 3D animations</h2>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="logo">Ayur<span>Well</span></div>
-  <ul>
-    <li><a href="#doshas">Doshas</a></li>
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#notify">Reminders</a></li>
-    <li><a href="#pay">Checkout</a></li>
-  </ul>
-  <div class="nav-btns">
-    <button class="lm-toggle" onclick="toggleLM()" id="lmBtn" title="Toggle light mode">☀️ <span class="lm-knob"></span></button>
-    <button class="nb1" onclick="toast('Welcome back 🌿')">Sign In</button>
-    <button class="cart-btn" onclick="toast('Cart is ready ✨')">🛒 Cart <span class="cc" id="cc">0</span></button>
-  </div>
-</nav>
-
-<!-- HERO: DNA HELIX BG -->
-<section class="hero">
-  <canvas id="helixCanvas"></canvas>
-  <div class="hero-content rv">
-    <div class="hero-tag">✦ 5000 Years of Ancient Wisdom</div>
-    <h1>Discover Your<br><em>Inner Balance</em><br>with Ayurveda</h1>
-    <p>Rooted in ancient science, tailored to your unique constitution. Find your dosha, get personalized remedies, and shop authentic herbs.</p>
-    <div class="hero-ctas">
-      <button class="cta1" onclick="openQuiz()">Find Your Dosha →</button>
-      <button class="cta2" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore Shop</button>
-    </div>
-  </div>
-</section>
+    <main>
+        <section id="home" class="hero-gradient">
+            <div id="particles-js"></div>
+            <div class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center hero-content">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-green-900 leading-tight mb-4">Discover Your Inner Harmony.</h2>
+                    <div class="slider-container">
+                        <div class="slider-content animate-scroll-left">
+                            <span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span><span>"When diet is wrong, medicine is of no use."</span><span>"The science of life is the knowledge of Veda."</span><span>"Health is a dynamic expression of life."</span><span>"Nature itself is the best physician."</span><span>"Balance is the key to a healthy life."</span><span>"Food is medicine. Eat with intention."</span>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-700 mb-8">Ayurveda teaches that balance is the key to wellness. Find your unique mind-body constitution by taking our curated 10-question quiz to reveal your dominant dosha.</p>
+                    <button id="start-quiz-btn" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">Find Your Dosha</button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                     <img src="main.png" alt="Ayurvedic Wellness" class="w-full max-w-lg">
+                </div>
+            </div>
+        </section>
 
 <!-- MARQUEE -->
 <div class="strip">
